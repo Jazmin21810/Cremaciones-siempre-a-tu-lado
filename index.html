@@ -199,15 +199,13 @@
     }
     .servicio:hover img {
       transform: scale(1.18) rotate(7deg);
-      }
+    }
     .memorial {
       display: flex;
       gap: 24px;
       flex-wrap: wrap;
       justify-content: center;
       margin: 28px 0;
-    }
-    .memorial {
       background: #fff;
       border: 1.2px solid #e1bee7;
       border-radius: 12px;
@@ -222,10 +220,6 @@
       cursor: pointer;
       animation: fadeInCard 1.1s cubic-bezier(.6,.1,.49,1.02);
     }
-    @keyframes fadeInCard {
-      from { transform: scale(0.95) translateY(32px); opacity: 0; }
-      to { transform: scale(1) translateY(0); opacity: 1; }  
-    }
     .memorial img {
       border-radius: 18px;
       box-shadow: 0 2px 18px rgba(80,41,72,0.14);
@@ -239,7 +233,7 @@
       border: 3px solid #e1bee7;
       background: #fff;
       filter: grayscale(30%) contrast(1.1) brightness(0.96);
-      animation: fadeInCard 1.2s cubic-bezier(.73,.15,.55,1.02)
+      animation: fadeInCard 1.2s cubic-bezier(.73,.15,.55,1.02);
     }
     .memorial img:hover {
       transform: scale(1.11) rotate(-2deg);
@@ -307,8 +301,7 @@
     }
     .faq ul span {
       color:#d07c9b;
-    } 
-    }  
+    }
     .valores-lista {
       display: flex;
       flex-wrap: wrap;
@@ -351,7 +344,6 @@
     @media (max-width: 650px) {
       .valores-lista { flex-direction: column; gap: 16px; }
       .valor { max-width: 98vw; } 
-    }
     }
     .contacto {
       background: #fff;
@@ -426,8 +418,8 @@
     @media (max-width: 600px) {
       .main, header, nav, footer { padding-left: 8px; padding-right: 8px; }
       .servicios-lista { flex-direction: column; gap: 18px; }
-      .galeria { flex-direction: column; align-items: center; }
-      .galeria img { max-width: 99vw; height: 120px; }
+      .memorial { flex-direction: column; align-items: center; min-width:unset; max-width:unset; }
+      .memorial img { max-width: 99vw; height: 120px; }
       header img { left: 12px; top: 10px; width: 56px; height: 56px; }
       h2 { font-size: 1.2em;}
     }
@@ -515,8 +507,8 @@
       <h2>Memorial</h2>
       <div class="memorial">
         <img src="Catriel 2.jpg" alt="Catriel" width="200" height="200">
-        <img src="Rocco.jpg" alt="Rocco." width="200" height="200">
-       <img src="Pincho2.jpg" alt="Pincho" width="200" height="200">
+        <img src="Rocco.jpg" alt="Rocco" width="200" height="200">
+        <img src="Pincho2.jpg" alt="Pincho" width="200" height="200">
         <img src="Pelusa2.jpg" alt="Pelusa" width="200" height="200">
       </div>
     </section>
@@ -534,12 +526,10 @@
         </li>
         <li>¿Cuál es el tiempo de espera de la entrega de la urna?<br>
           <span>El tiempo de espera puede variar desde 72 horas hasta 10 días, dependiendo del tipo de servicio elegido.</span>
+        </li>
       </ul>
-       </div>
-      </div>
     </section>
-      <div class="main fade-in">
-       <section id="valores">
+    <section id="valores">
       <h2>Nuestros Valores</h2>
       <div class="valores-lista">
         <div class="valor">
@@ -605,7 +595,7 @@
 
     // Animación scroll reveal para secciones
     function revealOnScroll() {
-      const fadeEls = document.querySelectorAll('.fade-in, .servicio, .galeria img, .faq, .contacto');
+      const fadeEls = document.querySelectorAll('.fade-in, .servicio, .memorial img, .faq, .contacto');
       fadeEls.forEach(el => {
         const rect = el.getBoundingClientRect();
         if(rect.top < window.innerHeight - 40) {
@@ -617,6 +607,5 @@
     window.addEventListener('scroll', revealOnScroll);
     window.addEventListener('DOMContentLoaded', revealOnScroll);
   </script>
-</div>  
 </body>
 </html>
