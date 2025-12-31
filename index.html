@@ -200,6 +200,34 @@
     .servicio:hover img {
       transform: scale(1.18) rotate(7deg);
     }
+
+    /* CTA: aumenté el margin-bottom para separar visualmente del Memorial */
+    .cta {
+      display: inline-block;
+      margin: 32px auto 56px auto; /* <-- aquí está la separación */
+      background: linear-gradient(90deg,#502948 0%,#d07c9b 100%);
+      color: #fff;
+      border: none;
+      border-radius: 22px;
+      padding: 14px 34px;
+      font-size: 1.11em;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+      box-shadow: 0 2px 18px rgba(80,41,72,0.14);
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      animation: fadeInUp 1.2s cubic-bezier(.73,.15,.55,1.02);
+    }
+    .cta:hover {
+      background: linear-gradient(90deg,#d07c9b 0%,#502948 100%);
+      color: #fff;
+      transform: scale(1.07);
+      box-shadow: 0 6px 26px rgba(80,41,72,0.19);  
+    }
+
     .memorial {
       display: flex;
       gap: 24px;
@@ -242,31 +270,6 @@
       background: #faf1f5;
       filter: none;
       z-index:1;
-    }
-    .cta {
-      display: inline-block;
-      margin: 32px auto 0 auto;
-      background: linear-gradient(90deg,#502948 0%,#d07c9b 100%);
-      color: #fff;
-      border: none;
-      border-radius: 22px;
-      padding: 14px 34px;
-      font-size: 1.11em;
-      font-weight: 700;
-      text-decoration: none;
-      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
-      box-shadow: 0 2px 18px rgba(80,41,72,0.14);
-      letter-spacing: 1px;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      animation: fadeInUp 1.2s cubic-bezier(.73,.15,.55,1.02);
-    }
-    .cta:hover {
-      background: linear-gradient(90deg,#d07c9b 0%,#502948 100%);
-      color: #fff;
-      transform: scale(1.07);
-      box-shadow: 0 6px 26px rgba(80,41,72,0.19);  
     }
     .faq {
       background: #faf1f5;
@@ -422,6 +425,8 @@
       .memorial img { max-width: 99vw; height: 120px; }
       header img { left: 12px; top: 10px; width: 56px; height: 56px; }
       h2 { font-size: 1.2em;}
+      /* reducir separación en pantallas pequeñas */
+      .cta { margin-bottom: 24px; }
     }
     .fade-in {
       opacity: 0;
@@ -501,8 +506,9 @@
           <p>Ofrecemos variedad de urnas y recuerdos para conservar a tu ser especial. <a href="Catálogo Siempre A Tu Lado 2026.pdf" target="_blank" rel="noopener">Ver catálogo</a></p>
         </div>
       </div>
-      <a class="cta" href="https://wa.me/5491136584970" target="_blank" rel="noopener">Solicitar servicio por WhatsApp</a>  
+      <a class="cta" href="https://wa.me/5491136584970" target="_blank" rel="noopener">Solicitar servicio por WhatsApp</a>
     </section>
+
     <section id="memorial">
       <h2>Memorial</h2>
       <div class="memorial">
@@ -512,6 +518,7 @@
         <img src="Pelusa2.jpg" alt="Pelusa" width="200" height="200">
       </div>
     </section>
+
     <section class="faq" id="faq">
       <h3>Preguntas Frecuentes</h3>
       <ul>
@@ -529,6 +536,7 @@
         </li>
       </ul>
     </section>
+
     <section id="valores">
       <h2>Nuestros Valores</h2>
       <div class="valores-lista">
@@ -562,6 +570,7 @@
         </div>
       </div> 
     </section>
+
     <section class="contacto" id="contacto">
       <h2>Contacto</h2>
       <p>WhatsApp: <a href="https://wa.me/5491136584970" target="_blank">5491136584970</a> <br>
