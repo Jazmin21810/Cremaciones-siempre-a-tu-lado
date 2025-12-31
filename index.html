@@ -204,7 +204,7 @@
     /* CTA: aumenté el margin-bottom para separar visualmente del Memorial */
     .cta {
       display: inline-block;
-      margin: 32px auto 56px auto; /* <-- separación entre WhatsApp CTA y Memorial */
+      margin: 32px auto 56px auto; /* <-- aquí está la separación */
       background: linear-gradient(90deg,#502948 0%,#d07c9b 100%);
       color: #fff;
       border: none;
@@ -220,13 +220,12 @@
       overflow: hidden;
       cursor: pointer;
       animation: fadeInUp 1.2s cubic-bezier(.73,.15,.55,1.02);
-      text-align: center;
     }
     .cta:hover {
       background: linear-gradient(90deg,#d07c9b 0%,#502948 100%);
       color: #fff;
       transform: scale(1.07);
-      box-shadow: 0 6px 26px rgba(80,41,72,0.19);
+      box-shadow: 0 6px 26px rgba(80,41,72,0.19);  
     }
 
     .memorial {
@@ -419,107 +418,16 @@
       box-shadow: 0 -2px 10px rgba(80,41,72,0.08);
       animation: fadeIn 2s;
     }
-
-    /* --- Mejoras responsive / mobile (añadidas) --- */
-
-    /* Make images fluid (covers many selectors) */
-    img, .memorial img, .servicio img, header img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-    }
-
-    /* Avoid background-attachment: fixed on smaller screens (performance & visual issues) */
-    @media (max-width: 900px) {
-      body {
-        background-attachment: scroll;
-        background-size: cover;
-      }
-    }
-
-    /* Mobile-specific adjustments */
-    @media (max-width: 700px) {
-      header {
-        padding: 20px 12px 14px;
-      }
-      header h1 {
-        font-size: 1.4rem;
-      }
-      header p {
-        font-size: 0.95rem;
-      }
-
-      /* Make nav scrollable horizontally for small widths */
-      nav {
-        gap: 10px;
-        padding: 10px 6px;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-      nav a {
-        padding: 8px 14px;
-        font-size: 1rem;
-        white-space: nowrap;
-      }
-
-      .main {
-        margin: 18px auto;
-        padding: 20px;
-        border-radius: 16px;
-      }
-      h2 { font-size: 1.2rem; }
-      .servicios-lista { gap: 16px; }
-      .servicio { padding: 18px 12px; }
-      .memorial { padding: 18px 12px; gap: 12px; }
-      /* CTA full-width más grande y fácil de tocar */
-      .cta {
-        display: block;
-        width: calc(100% - 40px);
-        max-width: 420px;
-        margin: 18px auto 24px auto;
-        padding: 14px 20px;
-        font-size: 1.05rem;
-        border-radius: 14px;
-      }
-      /* Tap targets */
-      nav a, .cta, .contacto a {
-        min-height: 44px;
-        line-height: 1.2;
-      }
-      /* Aumentar hit area para listas */
-      .faq ul li { padding: 10px 6px; }
-      /* Reduce heavy shadows/animations on mobile */
-      .main, .servicio, .memorial, .faq, .contacto {
-        box-shadow: 0 2px 8px rgba(80,41,72,0.08);
-        transition: none;
-      }
-      /* Sections spacing on mobile */
-      section { margin-bottom: 18px; }
-    }
-
-    /* Very small screens grid for memorial thumbnails */
-    @media (max-width: 420px) {
-      .memorial img {
-        width: 46%;
-        min-width: 120px;
-        height: auto;
-        margin: 6px;
-      }
-      .memorial { padding: 12px; }
-    }
-
-    /* Keep a smaller CTA margin-bottom on very small screens (override original) */
     @media (max-width: 600px) {
-      .cta { margin-bottom: 24px; }
       .main, header, nav, footer { padding-left: 8px; padding-right: 8px; }
       .servicios-lista { flex-direction: column; gap: 18px; }
       .memorial { flex-direction: column; align-items: center; min-width:unset; max-width:unset; }
       .memorial img { max-width: 99vw; height: 120px; }
       header img { left: 12px; top: 10px; width: 56px; height: 56px; }
       h2 { font-size: 1.2em;}
+      /* reducir separación en pantallas pequeñas */
+      .cta { margin-bottom: 24px; }
     }
-
     .fade-in {
       opacity: 0;
       animation: fadeIn 1.2s forwards;
@@ -678,38 +586,20 @@
     &copy; 2025 Siempre A Tu Lado | Servicios de Cremación para Mascotas | CABA y Gran Buenos Aires
   </footer>
   <script>
-    // Partículas: versión condicional para mejorar rendimiento en móviles
-    function crearParticulasCondicionales(num) {
+    // Partículas decorativas flotantes animadas
+    function crearParticulas(num) {
       const container = document.getElementById('particles');
-      if (!container) return;
-      const mq = window.matchMedia('(max-width: 700px)');
-      const small = mq.matches;
-      const cantidad = small ? Math.max(0, Math.floor(num / 6)) : num; // pocas o ninguna en móvil
-      // crear partículas
-      for (let i = 0; i < cantidad; i++) {
+      for(let i=0; i<num; i++) {
         const p = document.createElement('div');
         p.className = 'particle';
-        p.style.left = (Math.random() * 100) + 'vw';
-        p.style.top = (-Math.random() * 40) + 'vh';
-        const size = (10 + Math.random() * 16);
-        p.style.width = p.style.height = size + 'px';
-        p.style.animationDuration = (8 + Math.random() * 9) + 's';
+        p.style.left = (Math.random()*100) + 'vw';
+        p.style.top = (-Math.random()*40) + 'vh';
+        p.style.width = p.style.height = (14 + Math.random()*18) + 'px';
+        p.style.animationDuration = (10 + Math.random()*9) + 's';
         container.appendChild(p);
       }
-      // escucha cambios (rotación / cambio de tamaño)
-      if (mq.addEventListener) {
-        mq.addEventListener('change', () => {
-          container.innerHTML = '';
-          crearParticulasCondicionales(num);
-        });
-      } else if (mq.addListener) { // compatibilidad antigua
-        mq.addListener(() => {
-          container.innerHTML = '';
-          crearParticulasCondicionales(num);
-        });
-      }
     }
-    crearParticulasCondicionales(18);
+    crearParticulas(18);
 
     // Animación scroll reveal para secciones
     function revealOnScroll() {
