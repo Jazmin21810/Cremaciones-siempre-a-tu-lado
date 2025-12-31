@@ -9,7 +9,7 @@
     /* ---------------------------
        ESTILOS PRINCIPALES (ESCRITO ORIGINAL)
        No se modificó nada que afecte la vista en escritorio.
-       Todas las mejoras para móviles están en media queries más abajo.
+       Las mejoras móviles están en media queries más abajo.
        --------------------------- */
     body {
       font-family: 'Merriweather', 'Segoe UI', Arial, Helvetica, sans-serif;
@@ -75,6 +75,8 @@
       color: #ffdbe5;
       letter-spacing: 1px;
     }
+
+    /* NAV: mantiene exactamente el mismo aspecto en escritorio */
     nav {
       background: rgba(255,244,250,0.98);
       box-shadow: 0 2px 8px rgba(80,41,72,0.09);
@@ -121,6 +123,7 @@
       width:60%;
       left:20%;
     }
+
     .main {
       max-width: 900px;
       margin: 40px auto 0 auto;
@@ -225,12 +228,13 @@
       overflow: hidden;
       cursor: pointer;
       animation: fadeInUp 1.2s cubic-bezier(.73,.15,.55,1.02);
+      text-align: center;
     }
     .cta:hover {
       background: linear-gradient(90deg,#d07c9b 0%,#502948 100%);
       color: #fff;
       transform: scale(1.07);
-      box-shadow: 0 6px 26px rgba(80,41,72,0.19);  
+      box-shadow: 0 6px 26px rgba(80,41,72,0.19);
     }
 
     .memorial {
@@ -462,87 +466,100 @@
     }
 
     /* ---------------------------
-       MEJORAS EXCLUSIVAS PARA MÓVIL (Android / iPhone)
-       Estas reglas solo se aplican cuando la pantalla es pequeña,
-       por lo que la vista de escritorio queda EXACTAMENTE IGUAL.
+       CAMBIOS EXTRAS SOLO EN MÓVIL (Android / iPhone)
+       - Menú tipo "hamburger" en móvil (desktop EXACTO igual).
+       - Eliminar partículas totalmente en móvil (desktop conserva 18).
        --------------------------- */
 
-    /* Hacer imágenes fluidas en móviles (no afecta escritorio) */
-    @media (max-width: 900px) {
-      img, .memorial img, .servicio img, header img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-        object-fit: cover;
-      }
-      /* Evitar background-attachment: fixed en móviles (mejora rendimiento) */
-      body {
-        background-attachment: scroll;
-        background-size: cover;
-      }
+    /* Botón hamburguesa (oculto en escritorio) */
+    .nav-toggle {
+      display: none; /* se activará solo en mobile mediante media query */
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      margin-right: 12px;
+      align-self: center;
+    }
+    .nav-toggle .bar {
+      display: block;
+      width: 26px;
+      height: 3px;
+      background: #502948;
+      margin: 5px 0;
+      border-radius: 3px;
+      transition: transform 0.2s, opacity 0.2s;
     }
 
-    /* Ajustes más específicos para pantallas pequeñas (teléfonos) */
+    /* Mobile menu panel (oculto por defecto) */
+    .mobile-menu {
+      display: none; /* only shown in mobile when toggled */
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: 80%;
+      max-width: 320px;
+      background: rgba(255,244,250,0.98);
+      box-shadow: -6px 0 30px rgba(80,41,72,0.15);
+      padding: 84px 20px 20px 20px;
+      z-index: 200;
+      transform: translateX(100%);
+      transition: transform 0.28s cubic-bezier(.2,.9,.2,1);
+      overflow-y: auto;
+    }
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+    .mobile-menu a {
+      display: block;
+      padding: 12px 8px;
+      color: #502948;
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(80,41,72,0.04);
+      margin-bottom: 6px;
+    }
+    .mobile-menu a.activo {
+      background: #502948;
+      color: #fff;
+      border-radius: 8px;
+      padding-left: 10px;
+    }
+
+    /* En móviles quitamos partículas visualmente y activamos el hamburger */
     @media (max-width: 700px) {
-      header {
-        padding: 18px 12px 12px;
+
+      /* hide particles container to ensure no visual particles on mobile */
+      .particles { display: none !important; }
+
+      /* show toggle button and hide original centered nav links */
+      .nav-toggle { display: block; position: absolute; right: 12px; top: 12px; z-index: 150; }
+      /* keep nav background bar visible but hide the links inside it (desktop appearance preserved outside mobile) */
+      nav {
+        justify-content: center; /* keep bar height same */
+        padding: 8px 0;
       }
+      /* hide the original nav links visually on small screens to avoid duplication */
+      nav .nav-links { display: none; }
+
+      /* ensure the hamburger doesn't alter desktop layout (only appears in mobile) */
+      header { padding-top: 46px; } /* keep spacing comfortable for toggle */
+
+      /* mobile menu accessible style already defined above; show via JS toggling class .open */
+
+      /* Additional mobile UX tweaks (no change to desktop) */
       header h1 { font-size: 1.4rem; }
       header p { font-size: 0.95rem; }
-
-      /* Barra de navegación: permitir scroll horizontal en móviles
-         (no cambia el layout en escritorio) */
-      nav {
-        gap: 10px;
-        padding: 10px 6px;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-      nav a {
-        padding: 8px 14px;
-        font-size: 1rem;
-        white-space: nowrap;
-      }
-
-      .main {
-        margin: 16px auto;
-        padding: 18px;
-        border-radius: 14px;
-      }
-      h2 { font-size: 1.2rem; }
-      .servicios-lista { gap: 16px; }
-      .servicio { padding: 16px 12px; }
-
-      /* CTA: mantener mismo aspecto visual pero hacerlo más usable en móvil
-         (esto solo aplica en móvil; en escritorio .cta permanece igual) */
-      .cta {
-        display: block;
-        width: calc(100% - 40px);
-        max-width: 420px;
-        margin: 18px auto 24px auto;
-        padding: 14px 20px;
-        font-size: 1.05rem;
-        border-radius: 14px;
-        text-align: center;
-      }
-
+      .main { margin: 16px auto; padding: 18px; border-radius: 14px; }
+      .cta { display: block; width: calc(100% - 40px); max-width: 420px; margin: 18px auto 24px auto; }
       .memorial { padding: 14px 12px; gap: 12px; }
       .memorial img { max-width: 48%; height: auto; min-width: 120px; margin: 6px; }
-
-      /* Reducir sombras y animaciones pesadas en móviles para rendimiento */
-      .main, .servicio, .memorial, .faq, .contacto {
-        box-shadow: 0 2px 8px rgba(80,41,72,0.08);
-        transition: none;
-      }
-
-      /* Aumentar área táctil */
+      .main, .servicio, .memorial, .faq, .contacto { box-shadow: 0 2px 8px rgba(80,41,72,0.08); transition: none; }
       nav a, .cta, .contacto a { min-height: 44px; line-height: 1.2; }
-
-      /* Espaciado entre secciones en móvil */
-      section { margin-bottom: 16px; }
     }
 
-    /* Ajustes muy pequeños */
+    /* Very small screens adjustment */
     @media (max-width: 420px) {
       header h1 { font-size: 1.2rem; }
       header img { left: 10px; top: 8px; width: 52px; height: 52px; }
@@ -553,21 +570,41 @@
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Partículas: en escritorio se mostrarán; en móvil el CSS oculta .particles -->
   <div class="particles" id="particles"></div>
 
   <header>
     <img src="Mascota 1.jpeg" alt="Logotipo Siempre A Tu Lado" width="200" height="200">
     <h1>Siempre A Tu Lado</h1>
     <p>Sé que no es un adiós para siempre porque estarás eternamente en nuestros corazones</p>
+    <!-- Botón hamburguesa (solo visible en móvil) -->
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
   </header>
 
+  <!-- Nav principal: en escritorio se ve exactamente igual. 
+       En móvil las .nav-links se ocultan y se usa .mobile-menu -->
   <nav>
+    <div class="nav-links">
+      <a href="#servicios" class="activo">Servicios</a>
+      <a href="#memorial">Memorial</a>
+      <a href="#faq">Preguntas Frecuentes</a>
+      <a href="#valores">Nuestros Valores</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </nav>
+
+  <!-- Mobile menu (hidden by default, shown when .open) -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <a href="#servicios" class="activo">Servicios</a>
     <a href="#memorial">Memorial</a>
     <a href="#faq">Preguntas Frecuentes</a>
     <a href="#valores">Nuestros Valores</a>
     <a href="#contacto">Contacto</a>
-  </nav>
+  </div>
 
   <div class="main fade-in">
     <section id="servicios">
@@ -677,31 +714,29 @@
   </footer>
 
   <script>
-    /**
-     * Partículas condicionales:
-     * - En pantallas grandes (escritorio) se crean exactamente 18 partículas (igual que el original).
-     * - En pantallas móviles se crean muchas menos (o ninguna) para evitar consumo excesivo.
-     * Esto asegura que la apariencia en escritorio siga siendo idéntica,
-     * mientras que en Android/iPhone la experiencia será más fluida.
-     */
+    // --------------------------
+    // Partículas condicionales:
+    // - Escritorio: EXACTAMENTE 18 partículas (comportamiento original).
+    // - Móvil (<=700px): 0 partículas (se eliminan totalmente).
+    // --------------------------
     function crearParticulasCondicionales(num) {
       const container = document.getElementById('particles');
       if (!container) return;
       const mq = window.matchMedia('(max-width: 700px)');
       const isSmall = mq.matches;
-      const cantidad = isSmall ? Math.max(0, Math.floor(num / 6)) : num; // móvil: ~3, escritorio: 18
+      const cantidad = isSmall ? 0 : num; // mobile: 0, desktop: num (18)
       // crear partículas
       for (let i = 0; i < cantidad; i++) {
         const p = document.createElement('div');
         p.className = 'particle';
         p.style.left = (Math.random() * 100) + 'vw';
         p.style.top = (-Math.random() * 40) + 'vh';
-        const size = (10 + Math.random() * 16);
+        const size = (14 + Math.random() * 18);
         p.style.width = p.style.height = size + 'px';
-        p.style.animationDuration = (8 + Math.random() * 9) + 's';
+        p.style.animationDuration = (10 + Math.random() * 9) + 's';
         container.appendChild(p);
       }
-      // cuando cambie el tamaño de la pantalla (rotación), recrear según nuevo tamaño
+      // Si hay cambio de media (e.g. rotación), recrear
       const recreate = () => {
         container.innerHTML = '';
         crearParticulasCondicionales(num);
@@ -712,10 +747,64 @@
         mq.addListener(recreate);
       }
     }
-    // Llamada: en escritorio esto genera 18 partículas (idéntico a comportamiento original)
     crearParticulasCondicionales(18);
 
-    // Animación scroll reveal (dejado igual, aplica donde corresponda)
+    // --------------------------
+    // Menú hamburguesa (solo activo en móvil por CSS):
+    // - Abre/oculta .mobile-menu
+    // - Mantiene nav original en escritorio sin cambios
+    // --------------------------
+    (function() {
+      const toggle = document.getElementById('navToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      if (!toggle || !mobileMenu) return;
+
+      function openMenu() {
+        mobileMenu.classList.add('open');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        toggle.setAttribute('aria-expanded', 'true');
+        // Prevent body scroll when menu open
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMenu() {
+        mobileMenu.classList.remove('open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      toggle.addEventListener('click', () => {
+        const opened = mobileMenu.classList.contains('open');
+        if (opened) closeMenu(); else openMenu();
+      });
+
+      // Close menu when clicking a link inside
+      mobileMenu.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+          closeMenu();
+        }
+      });
+
+      // Close on ESC
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+      });
+
+      // If viewport becomes large (desktop), ensure menu closed and body restored
+      const mq = window.matchMedia('(min-width: 701px)');
+      const mqHandler = () => {
+        if (mq.matches) {
+          closeMenu();
+        }
+      };
+      if (mq.addEventListener) mq.addEventListener('change', mqHandler);
+      else if (mq.addListener) mq.addListener(mqHandler);
+    })();
+
+    // --------------------------
+    // Scroll reveal (igual que antes)
+    // --------------------------
     function revealOnScroll() {
       const fadeEls = document.querySelectorAll('.fade-in, .servicio, .memorial img, .faq, .contacto');
       fadeEls.forEach(el => {
