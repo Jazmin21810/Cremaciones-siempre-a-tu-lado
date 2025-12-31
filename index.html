@@ -7,7 +7,7 @@
   <meta name="description" content="Servicios de cremación para mascotas en CABA y Gran Buenos Aires. Atención personalizada, memorial, preguntas frecuentes y contacto. Sé que no es un adiós para siempre porque estarás eternamente en nuestros corazones.">
   <style>
     /* ---------------------------
-       ESTILOS PRINCIPALES (ESCRITO ORIGINAL)
+       ESTILOS PRINCIPALES (ESCRITORIO)
        No se modificó nada que afecte la vista en escritorio.
        Las mejoras móviles están en media queries más abajo.
        --------------------------- */
@@ -467,105 +467,133 @@
 
     /* ---------------------------
        CAMBIOS EXTRAS SOLO EN MÓVIL (Android / iPhone)
-       - Menú tipo "hamburger" en móvil (desktop EXACTO igual).
-       - Eliminar partículas totalmente en móvil (desktop conserva 18).
+       - Modal centrado para mobile menu (en vez de slide-right)
+       - Toggle animado a "X" cuando se abre
+       - Eliminar partículas totalmente en móvil
        --------------------------- */
 
-    /* Botón hamburguesa (oculto en escritorio) */
-    .nav-toggle {
-      display: none; /* se activará solo en mobile mediante media query */
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 8px;
-      margin-right: 12px;
-      align-self: center;
-    }
-    .nav-toggle .bar {
-      display: block;
-      width: 26px;
-      height: 3px;
-      background: #502948;
-      margin: 5px 0;
-      border-radius: 3px;
-      transition: transform 0.2s, opacity 0.2s;
-    }
+    /* Default hidden mobile elements (enabled in media query) */
+    .nav-toggle { display: none; }
+    .mobile-overlay { display: none; }
+    .mobile-menu { display: none; }
 
-    /* Mobile menu panel (oculto por defecto) */
-    .mobile-menu {
-      display: none; /* only shown in mobile when toggled */
-      position: fixed;
-      top: 0;
-      right: 0;
-      height: 100vh;
-      width: 80%;
-      max-width: 320px;
-      background: rgba(255,244,250,0.98);
-      box-shadow: -6px 0 30px rgba(80,41,72,0.15);
-      padding: 84px 20px 20px 20px;
-      z-index: 200;
-      transform: translateX(100%);
-      transition: transform 0.28s cubic-bezier(.2,.9,.2,1);
-      overflow-y: auto;
-    }
-    .mobile-menu.open {
-      transform: translateX(0);
-    }
-    .mobile-menu a {
-      display: block;
-      padding: 12px 8px;
-      color: #502948;
-      text-decoration: none;
-      font-weight: 700;
-      border-bottom: 1px solid rgba(80,41,72,0.04);
-      margin-bottom: 6px;
-    }
-    .mobile-menu a.activo {
-      background: #502948;
-      color: #fff;
-      border-radius: 8px;
-      padding-left: 10px;
-    }
-
-    /* En móviles quitamos partículas visualmente y activamos el hamburger */
     @media (max-width: 700px) {
 
-      /* hide particles container to ensure no visual particles on mobile */
+      /* Remove particles completely in mobile for performance */
       .particles { display: none !important; }
 
-      /* show toggle button and hide original centered nav links */
-      .nav-toggle { display: block; position: absolute; right: 12px; top: 12px; z-index: 150; }
-      /* keep nav background bar visible but hide the links inside it (desktop appearance preserved outside mobile) */
-      nav {
-        justify-content: center; /* keep bar height same */
-        padding: 8px 0;
+      /* Show hamburger toggle */
+      .nav-toggle {
+        display: block;
+        position: absolute;
+        right: 12px;
+        top: 10px;
+        z-index: 160;
+        background: transparent;
+        border: 0;
+        padding: 8px;
+        cursor: pointer;
       }
-      /* hide the original nav links visually on small screens to avoid duplication */
+      .nav-toggle .bar {
+        display: block;
+        width: 26px;
+        height: 3px;
+        background: #fff;
+        margin: 5px 0;
+        border-radius: 3px;
+        transition: transform 260ms cubic-bezier(.2,.9,.2,1), opacity 200ms ease, background 200ms ease;
+      }
+
+      /* Toggle animation to X when .open is added */
+      .nav-toggle.open .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      .nav-toggle.open .bar:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-toggle.open .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+
+      /* hide original desktop nav-links */
       nav .nav-links { display: none; }
 
-      /* ensure the hamburger doesn't alter desktop layout (only appears in mobile) */
-      header { padding-top: 46px; } /* keep spacing comfortable for toggle */
+      /* keep nav bar visible but reduce height */
+      nav { padding: 8px 0; justify-content: center; }
 
-      /* mobile menu accessible style already defined above; show via JS toggling class .open */
+      /* Modal overlay (covers content behind modal) */
+      .mobile-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+        z-index: 155;
+        opacity: 0;
+        transition: opacity 220ms ease;
+        pointer-events: none;
+      }
+      .mobile-overlay.visible {
+        opacity: 1;
+        pointer-events: auto;
+      }
 
-      /* Additional mobile UX tweaks (no change to desktop) */
+      /* Modal centered panel */
+      .mobile-menu {
+        display: block;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -48%) scale(0.96);
+        width: calc(100% - 48px);
+        max-width: 520px;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        background: rgba(255,244,250,0.98);
+        box-shadow: 0 12px 40px rgba(80,41,72,0.2);
+        border-radius: 14px;
+        z-index: 160;
+        padding: 28px 20px;
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 260ms cubic-bezier(.2,.9,.2,1), opacity 220ms ease, visibility 220ms;
+      }
+      .mobile-menu.open {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .mobile-menu a {
+        display: block;
+        padding: 12px 10px;
+        color: #502948;
+        text-decoration: none;
+        font-weight: 700;
+        border-radius: 8px;
+        margin-bottom: 8px;
+      }
+      .mobile-menu a.activo { background: #502948; color: #fff; }
+
+      /* Mobile typography / layout tweaks */
+      header { padding-top: 56px; }
       header h1 { font-size: 1.4rem; }
       header p { font-size: 0.95rem; }
-      .main { margin: 16px auto; padding: 18px; border-radius: 14px; }
+      .main { margin: 18px auto; padding: 18px; border-radius: 14px; }
       .cta { display: block; width: calc(100% - 40px); max-width: 420px; margin: 18px auto 24px auto; }
       .memorial { padding: 14px 12px; gap: 12px; }
       .memorial img { max-width: 48%; height: auto; min-width: 120px; margin: 6px; }
       .main, .servicio, .memorial, .faq, .contacto { box-shadow: 0 2px 8px rgba(80,41,72,0.08); transition: none; }
       nav a, .cta, .contacto a { min-height: 44px; line-height: 1.2; }
+      section { margin-bottom: 14px; }
     }
 
     /* Very small screens adjustment */
     @media (max-width: 420px) {
       header h1 { font-size: 1.2rem; }
       header img { left: 10px; top: 8px; width: 52px; height: 52px; }
+      .mobile-menu { width: calc(100% - 28px); padding: 18px 12px; }
       .memorial img { width: 46%; min-width: 110px; }
     }
-
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
@@ -579,13 +607,13 @@
     <p>Sé que no es un adiós para siempre porque estarás eternamente en nuestros corazones</p>
     <!-- Botón hamburguesa (solo visible en móvil) -->
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
     </button>
   </header>
 
-  <!-- Nav principal: en escritorio se ve exactamente igual. 
+  <!-- Nav principal: en escritorio se ve exactamente igual.
        En móvil las .nav-links se ocultan y se usa .mobile-menu -->
   <nav>
     <div class="nav-links">
@@ -597,14 +625,17 @@
     </div>
   </nav>
 
-  <!-- Mobile menu (hidden by default, shown when .open) -->
-  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <!-- Overlay for modal (only used in mobile) -->
+  <div id="mobileOverlay" class="mobile-overlay" aria-hidden="true"></div>
+
+  <!-- Mobile menu modal (hidden by default; toggled via JS only on mobile) -->
+  <aside id="mobileMenu" class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="true">
     <a href="#servicios" class="activo">Servicios</a>
     <a href="#memorial">Memorial</a>
     <a href="#faq">Preguntas Frecuentes</a>
     <a href="#valores">Nuestros Valores</a>
     <a href="#contacto">Contacto</a>
-  </div>
+  </aside>
 
   <div class="main fade-in">
     <section id="servicios">
@@ -750,28 +781,37 @@
     crearParticulasCondicionales(18);
 
     // --------------------------
-    // Menú hamburguesa (solo activo en móvil por CSS):
-    // - Abre/oculta .mobile-menu
-    // - Mantiene nav original en escritorio sin cambios
+    // Menú modal centrado + toggle animado (solo activo en móvil por CSS)
     // --------------------------
     (function() {
       const toggle = document.getElementById('navToggle');
       const mobileMenu = document.getElementById('mobileMenu');
+      const overlay = document.getElementById('mobileOverlay');
 
-      if (!toggle || !mobileMenu) return;
+      if (!toggle || !mobileMenu || !overlay) return;
 
       function openMenu() {
         mobileMenu.classList.add('open');
-        mobileMenu.setAttribute('aria-hidden', 'false');
+        overlay.classList.add('visible');
+        toggle.classList.add('open'); // animate bars -> X
         toggle.setAttribute('aria-expanded', 'true');
-        // Prevent body scroll when menu open
-        document.body.style.overflow = 'hidden';
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden'; // prevent background scroll
+        // focus first link
+        const firstLink = mobileMenu.querySelector('a');
+        if (firstLink) firstLink.focus();
       }
+
       function closeMenu() {
         mobileMenu.classList.remove('open');
-        mobileMenu.setAttribute('aria-hidden', 'true');
+        overlay.classList.remove('visible');
+        toggle.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        overlay.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        toggle.focus();
       }
 
       toggle.addEventListener('click', () => {
@@ -779,27 +819,24 @@
         if (opened) closeMenu(); else openMenu();
       });
 
-      // Close menu when clicking a link inside
+      // close when clicking overlay
+      overlay.addEventListener('click', closeMenu);
+
+      // close when clicking a link inside menu
       mobileMenu.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') {
-          closeMenu();
-        }
+        if (e.target.tagName === 'A') closeMenu();
       });
 
-      // Close on ESC
+      // close on Escape
       window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeMenu();
       });
 
-      // If viewport becomes large (desktop), ensure menu closed and body restored
-      const mq = window.matchMedia('(min-width: 701px)');
-      const mqHandler = () => {
-        if (mq.matches) {
-          closeMenu();
-        }
-      };
-      if (mq.addEventListener) mq.addEventListener('change', mqHandler);
-      else if (mq.addListener) mq.addListener(mqHandler);
+      // ensure menu closes when switching to desktop
+      const mqDesktop = window.matchMedia('(min-width: 701px)');
+      const handler = () => { if (mqDesktop.matches) closeMenu(); };
+      if (mqDesktop.addEventListener) mqDesktop.addEventListener('change', handler);
+      else if (mqDesktop.addListener) mqDesktop.addListener(handler);
     })();
 
     // --------------------------
