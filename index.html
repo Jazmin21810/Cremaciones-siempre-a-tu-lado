@@ -541,15 +541,15 @@
       .mobile-menu {
         display: block;
         position: fixed;
-        left: 60%;
-        top: 60%;
+        left: 50%;
+        top: 50%;
         transform: translate(-50%, -48%) scale(0.96);
         width: calc(100% - 48px);
         max-width: 520px;
         max-height: calc(100vh - 80px);
         overflow-y: auto;
         background: rgba(255,244,250,0.98);
-        box-shadow: 0 16px 44px rgba(80,41,72,0.2);
+        box-shadow: 0 12px 40px rgba(80,41,72,0.2);
         border-radius: 14px;
         z-index: 160;
         padding: 28px 20px;
@@ -580,10 +580,10 @@
       header p { font-size: 0.95rem; }
       .main { margin: 18px auto; padding: 18px; border-radius: 14px; }
       .cta { display: block; width: calc(100% - 40px); max-width: 420px; margin: 18px auto 24px auto; }
-      .memorial { padding: 10px 10px; gap: 2px; }
-      .memorial img { max-width: 0%; height: 80px; min-width: 80px; margin: 0px; }
-      .main, .servicio, .memorial, .faq, .contacto { box-shadow: 0 12px 10px rgba(80,41,72,0.08); transition: none; }
-      nav a, .cta, .contacto a { min-height: 48px; line-height: 1.2; }
+      .memorial { padding: 14px 12px; gap: 12px; }
+      .memorial img { max-width: 48%; height: auto; min-width: 120px; margin: 6px; }
+      .main, .servicio, .memorial, .faq, .contacto { box-shadow: 0 2px 8px rgba(80,41,72,0.08); transition: none; }
+      nav a, .cta, .contacto a { min-height: 44px; line-height: 1.2; }
       section { margin-bottom: 14px; }
     }
 
@@ -592,7 +592,7 @@
       header h1 { font-size: 1.2rem; }
       header img { left: 10px; top: 8px; width: 52px; height: 52px; }
       .mobile-menu { width: calc(100% - 28px); padding: 18px 12px; }
-      .memorial img { width: 48%; height: 10; }
+      .memorial img { width: 46%; min-width: 110px; }
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
@@ -669,10 +669,10 @@
     <section id="memorial">
       <h2>Memorial</h2>
       <div class="memorial">
-        <img src="Catriel 2.jpg" alt="Catriel" width="100" height="100">
-        <img src="Rocco.jpg" alt="Rocco" width="100" height="100">
-        <img src="Pincho2.jpg" alt="Pincho" width="100" height="100">
-        <img src="Pelusa2.jpg" alt="Pelusa" width="100" height="100">
+        <img src="Catriel 2.jpg" alt="Catriel" width="200" height="200">
+        <img src="Rocco.jpg" alt="Rocco" width="200" height="200">
+        <img src="Pincho2.jpg" alt="Pincho" width="200" height="200">
+        <img src="Pelusa2.jpg" alt="Pelusa" width="200" height="200">
       </div>
     </section>
 
