@@ -467,9 +467,11 @@
 
     /* ---------------------------
        CAMBIOS EXTRAS SOLO EN MÓVIL (Android / iPhone)
-       Ajustes aquí: hacemos que el memorial se vea ENTERO en pantalla móvil
-       - usamos grid 2x2 y dimensionamos las imágenes con --vh dinámico
-       - esto aplica SOLO en mobile via media query
+       - Modal centrado para mobile menu (en vez de slide-right)
+       - Toggle animado a "X" cuando se abre
+       - Eliminar partículas totalmente en móvil
+       - Mantener el toggle FIJO (always visible) en móvil
+       - Asegurar que #memorial y #contacto encabezuen bien y se vean completos en pantalla móvil
        --------------------------- */
 
     /* Default hidden mobile elements (enabled in media query) */
@@ -482,17 +484,19 @@
       /* Remove particles completely in mobile for performance */
       .particles { display: none !important; }
 
-      /* Show hamburger toggle (unchanged) */
+      /* Show hamburger toggle and keep it fixed so it's always available */
       .nav-toggle {
         display: block;
-        position: absolute;
+        position: fixed;    /* FIXED so it's always visible */
         right: 12px;
-        top: 10px;
-        z-index: 160;
-        background: transparent;
+        top: 12px;
+        z-index: 9999;      /* very high so it stays above modal/header */
+        background: rgba(80,41,72,0.85);
         border: 0;
         padding: 8px;
+        border-radius: 10px;
         cursor: pointer;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.18);
       }
       .nav-toggle .bar {
         display: block;
@@ -503,86 +507,113 @@
         border-radius: 3px;
         transition: transform 260ms cubic-bezier(.2,.9,.2,1), opacity 200ms ease, background 200ms ease;
       }
-      .nav-toggle.open .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-      .nav-toggle.open .bar:nth-child(2) { opacity: 0; }
-      .nav-toggle.open .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+      /* Toggle animation to X when .open is added */
+      .nav-toggle.open .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      .nav-toggle.open .bar:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-toggle.open .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
 
       /* hide original desktop nav-links */
       nav .nav-links { display: none; }
+
+      /* reduce nav bar height but keep visible to preserve desktop look */
       nav { padding: 8px 0; justify-content: center; }
 
-      /* Modal overlay / menu (unchanged) */
-      .mobile-overlay { display: block; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 155; opacity: 0; transition: opacity 220ms ease; pointer-events: none; }
-      .mobile-overlay.visible { opacity: 1; pointer-events: auto; }
-      .mobile-menu { display:block; position:fixed; left:50%; top:50%; transform: translate(-50%, -48%) scale(0.96); width: calc(100% - 48px); max-width:520px; max-height: calc(100vh - 80px); overflow-y:auto; background: rgba(255,244,250,0.98); box-shadow: 0 12px 40px rgba(80,41,72,0.2); border-radius:14px; z-index:160; padding:28px 20px; opacity:0; visibility:hidden; transition: transform 260ms cubic-bezier(.2,.9,.2,1), opacity 220ms ease, visibility 220ms; }
-      .mobile-menu.open { transform: translate(-50%, -50%) scale(1); opacity:1; visibility:visible; }
-      .mobile-menu a { display:block; padding:12px 10px; color:#502948; text-decoration:none; font-weight:700; border-radius:8px; margin-bottom:8px; }
-      .mobile-menu a.activo { background:#502948; color:#fff; }
+      /* Modal overlay (covers content behind modal) */
+      .mobile-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+        z-index: 9990;
+        opacity: 0;
+        transition: opacity 220ms ease;
+        pointer-events: none;
+      }
+      .mobile-overlay.visible {
+        opacity: 1;
+        pointer-events: auto;
+      }
 
-      /* Mobile typography / layout tweaks (unchanged) */
+      /* Modal centered panel */
+      .mobile-menu {
+        display: block;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -48%) scale(0.96);
+        width: calc(100% - 48px);
+        max-width: 520px;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+        background: rgba(255,244,250,0.98);
+        box-shadow: 0 12px 40px rgba(80,41,72,0.2);
+        border-radius: 14px;
+        z-index: 9995;
+        padding: 28px 20px;
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 260ms cubic-bezier(.2,.9,.2,1), opacity 220ms ease, visibility 220ms;
+      }
+      .mobile-menu.open {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .mobile-menu a {
+        display: block;
+        padding: 12px 10px;
+        color: #502948;
+        text-decoration: none;
+        font-weight: 700;
+        border-radius: 8px;
+        margin-bottom: 8px;
+      }
+      .mobile-menu a.activo { background: #502948; color: #fff; }
+
+      /* Mobile typography / layout tweaks */
       header { padding-top: 56px; }
       header h1 { font-size: 1.4rem; }
       header p { font-size: 0.95rem; }
       .main { margin: 18px auto; padding: 18px; border-radius: 14px; }
+
+      /* CTA sizing on mobile */
       .cta { display: block; width: calc(100% - 40px); max-width: 420px; margin: 18px auto 24px auto; }
 
-      /* ---- MEMORIAL MOBILE FIX:
-         Goal: make memorial (heading + 4 images) fit fully into common mobile viewports (Android & iPhone)
-         Strategy:
-         - Use a compact 2x2 grid
-         - Compute a viewport unit --vh in JS to handle mobile browser chrome (address bar)
-         - Set grid container height so heading plus grid fits inside viewport (header + small spacing excluded)
-         - Size images to fill grid cells while keeping aspect via object-fit:cover
+      /* Memorial: ensure heading and gallery fit well on mobile screen
+         - use scroll-margin-top so anchor links position heading below fixed toggle/header
+         - limit gallery height to viewport minus header/toggle and allow internal scroll if needed
       */
-      section { scroll-margin-top: 96px; } /* ensure anchor links position correctly under fixed toggle/header */
-
-      #memorial {
-        padding: 8px 12px;
-      }
-      #memorial h2 {
-        font-size: 1.25rem;
-        margin: 6px 0 8px 0;
-      }
-      /* grid 2x2 */
+      section { scroll-margin-top: 96px; } /* offset for fixed toggle/header */
       #memorial .memorial {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-        padding: 6px;
-        border-radius: 12px;
-        /* Use dynamic viewport-based height so grid + heading fits on screen */
-        /* 140px is approximate reserved space for header / top toggle / margins; JS will set --vh */
-        height: calc(var(--vh, 1vh) * 100 - 140px);
-        max-height: calc(var(--vh, 1vh) * 100 - 120px);
-        overflow: hidden;
-        align-items: center;
-        justify-items: center;
-      }
-      /* make each image fill its grid cell */
-      #memorial .memorial img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 10px;
-        margin: 0;
-        border-width: 2px;
-      }
-
-      /* Contact compact */
-      #contacto { padding: 8px 12px; }
-      #contacto h2 { font-size: 1.25rem; margin-bottom: 8px; }
-      #contacto .contacto {
-        max-height: calc(var(--vh, 1vh) * 100 - 120px);
+        max-height: calc(100vh - 160px); /* viewport minus estimated header + spacing */
         overflow-y: auto;
-        padding: 16px;
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-        gap:8px;
-        align-items:center;
+        align-items: center;
+        justify-content: center;
+        padding: 12px;
       }
-      #contacto .contacto p { margin:6px 0; font-size: 1rem; }
 
+      /* Contact: ensure contact heading and core info are visible on single screen where possible */
+      #contacto .contacto {
+        max-height: calc(100vh - 140px);
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+      }
+      /* reduce padding for contact details so they fit better */
+      #contacto .contacto p { margin: 6px 0; font-size: 1rem; }
+
+      .memorial { padding: 14px 12px; gap: 12px; }
+      .memorial img { max-width: 48%; height: auto; min-width: 120px; margin: 6px; }
       .main, .servicio, .memorial, .faq, .contacto { box-shadow: 0 2px 8px rgba(80,41,72,0.08); transition: none; }
       nav a, .cta, .contacto a { min-height: 44px; line-height: 1.2; }
       section { margin-bottom: 14px; }
@@ -593,10 +624,7 @@
       header h1 { font-size: 1.2rem; }
       header img { left: 10px; top: 8px; width: 52px; height: 52px; }
       .mobile-menu { width: calc(100% - 28px); padding: 18px 12px; }
-      /* tighten image max-height for tiny screens */
-      #memorial .memorial { gap:6px; }
-      #memorial .memorial img { max-height: 140px; }
-      .memorial img { width: 100%; }
+      .memorial img { width: 46%; min-width: 110px; }
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
@@ -609,7 +637,8 @@
     <img src="Mascota 1.jpeg" alt="Logotipo Siempre A Tu Lado" width="200" height="200">
     <h1>Siempre A Tu Lado</h1>
     <p>Sé que no es un adiós para siempre porque estarás eternamente en nuestros corazones</p>
-    <!-- Botón hamburguesa (solo visible en móvil) -->
+
+    <!-- Botón hamburguesa (solo visible en móvil CSS) - ahora FIXED so always visible -->
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false">
       <span class="bar" aria-hidden="true"></span>
       <span class="bar" aria-hidden="true"></span>
@@ -618,7 +647,7 @@
   </header>
 
   <!-- Nav principal: en escritorio se ve exactamente igual.
-       En móvil las .nav-links se ocultan y se usa .mobile-menu -->
+       On mobile the .nav-links are hidden and modal menu used. -->
   <nav>
     <div class="nav-links">
       <a href="#servicios" class="activo">Servicios</a>
@@ -703,33 +732,43 @@
       <div class="valores-lista">
         <div class="valor">
           <h4>Empatía</h4>
-          <blockquote>…<br><span class="autor">– Opinión de Google</span></blockquote>
+          <blockquote>
+            “Sol es lo máximo, la empatía que me mostró me ayudó mucho en ese momento, y el mismo día que mi gatita se me fue me ayudó con todo y a los 3 días ya la tenía de vuelta conmigo, cuando en otros lados tardan 10, 15, etc. Recomendada para despedir a y tener siempre consigo sus mascotitas. Gracias por todo Sol.”<br>
+            <span class="autor">– Opinión de Google</span>
+          </blockquote>
         </div>
         <div class="valor">
           <h4>Responsabilidad</h4>
-          <blockquote>…<br><span class="autor">– Opinión de Google</span></blockquote>
+          <blockquote>
+            “Muy recomendable. Sol respondió muy rápido a las consultas y de forma muy amable y contenedora. En una semana tuvimos la urnita tal cual la pedimos. Todo perfecto. Muchas gracias por sobretodo dar tranquilidad en momentos no muy gratos.”<br>
+            <span class="autor">– Opinión de Google</span>
+          </blockquote>
         </div>
         <div class="valor">
           <h4>Compromiso</h4>
-          <blockquote>…<br><span class="autor">– Opinión de Google</span></blockquote>
+          <blockquote>
+            “Uno a veces es sorprendido por estos momentos dolorosos y no sabe como reaccionar ni para donde correr. Encontré de casualidad el servicio que ofrece Siempre a tu lado y nos ayudó muchísimo a poder afrontar este momento de la pérdida de nuestra perrita. Son muy bondadosos y prolijos al respecto. Recomiendo totalmente.”<br>
+            <span class="autor">– Opinión de Google</span>
+          </blockquote>
         </div>
         <div class="valor">
           <h4>Respeto</h4>
-          <blockquote>…<br><span class="autor">– Opinión de Google</span></blockquote>
+          <blockquote>
+            “El servicio fue excelente en un momento muy difícil. Nos trataron con mucho respeto, empatía y calidez. Todo el proceso fue claro, profesional y muy humano. Agradezco profundamente el cuidado y la atención que tuvieron con nuestra mascota y con nosotros. Fue todo muy bueno y reconfortante dentro del dolor. Los recomendaría sin dudar.”<br>
+            <span class="autor">– Opinión de Google</span>
+          </blockquote>
         </div>
       </div> 
     </section>
 
     <section class="contacto" id="contacto">
       <h2>Contacto</h2>
-      <div class="contacto">
-        <p>WhatsApp: <a href="https://wa.me/5491136584970" target="_blank">5491136584970</a></p>
-        <p>Correo: <a href="mailto:cremacionessiempreatulado@gmail.com">cremacionessiempreatulado@gmail.com</a></p>
-        <div class="redes">
-          <a href="https://www.facebook.com/profile.php?id=100065671501966#" target="_blank" title="Facebook"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
-          <a href="https://www.instagram.com/siempre_a_tu_lado_cremaciones/?hl=es" target="_blank" title="Instagram"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
-          <a href="https://wa.me/5491136584970" target="_blank" title="WhatsApp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"></a>
-        </div>
+      <p>WhatsApp: <a href="https://wa.me/5491136584970" target="_blank">5491136584970</a> <br>
+      Correo: <a href="mailto:cremacionessiempreatulado@gmail.com">cremacionessiempreatulado@gmail.com</a></p>
+      <div class="redes">
+        <a href="https://www.facebook.com/profile.php?id=100065671501966#" target="_blank" title="Facebook"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+        <a href="https://www.instagram.com/siempre_a_tu_lado_cremaciones/?hl=es" target="_blank" title="Instagram"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+        <a href="https://wa.me/5491136584970" target="_blank" title="WhatsApp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"></a>
       </div>
     </section>
   </div>
@@ -741,14 +780,16 @@
   <script>
     // --------------------------
     // Partículas condicionales:
-    // - Escritorio: 18 partículas
-    // - Móvil (<=700px): 0 partículas
+    // - Escritorio: EXACTAMENTE 18 partículas (comportamiento original).
+    // - Móvil (<=700px): 0 partículas (se eliminan totalmente).
     // --------------------------
     function crearParticulasCondicionales(num) {
       const container = document.getElementById('particles');
       if (!container) return;
-      const mq = window.matchMedia('(max-width:700px)');
-      const cantidad = mq.matches ? 0 : num;
+      const mq = window.matchMedia('(max-width: 700px)');
+      const isSmall = mq.matches;
+      const cantidad = isSmall ? 0 : num; // mobile: 0, desktop: num (18)
+      // crear partículas
       for (let i = 0; i < cantidad; i++) {
         const p = document.createElement('div');
         p.className = 'particle';
@@ -759,36 +800,21 @@
         p.style.animationDuration = (10 + Math.random() * 9) + 's';
         container.appendChild(p);
       }
+      // Si hay cambio de media (e.g. rotación), recrear
       const recreate = () => {
         container.innerHTML = '';
         crearParticulasCondicionales(num);
       };
-      if (mq.addEventListener) mq.addEventListener('change', recreate);
-      else if (mq.addListener) mq.addListener(recreate);
+      if (mq.addEventListener) {
+        mq.addEventListener('change', recreate);
+      } else if (mq.addListener) {
+        mq.addListener(recreate);
+      }
     }
     crearParticulasCondicionales(18);
 
     // --------------------------
-    // Ajuste dinámico de --vh para móviles (mejora que la referencia 1vh en navegadores móviles)
-    // Solo se activa en móviles (max-width:700px).
-    // Esto ayuda a asegurar que el memorial grid con height: calc(var(--vh) * 100 - 140px)
-    // se calcule usando el alto real de la ventana, permitiendo que el memorial (heading + 2x2) quepa en pantalla.
-    // --------------------------
-    (function setMobileVh() {
-      const applyVh = () => {
-        if (window.matchMedia('(max-width:700px)').matches) {
-          document.documentElement.style.setProperty('--vh', (window.innerHeight * 0.01) + 'px');
-        } else {
-          document.documentElement.style.removeProperty('--vh');
-        }
-      };
-      applyVh();
-      window.addEventListener('resize', applyVh);
-      window.addEventListener('orientationchange', applyVh);
-    })();
-
-    // --------------------------
-    // Menú modal centrado + toggle animado (solo activo en móvil por CSS)
+    // Mobile modal centered menu + animated toggle (only active in mobile by CSS)
     // --------------------------
     (function() {
       const toggle = document.getElementById('navToggle');
