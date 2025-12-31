@@ -470,8 +470,6 @@
        - Modal centrado para mobile menu (en vez de slide-right)
        - Toggle animado a "X" cuando se abre
        - Eliminar partículas totalmente en móvil
-       - Mantener el toggle FIJO (always visible) en móvil
-       - Asegurar que #memorial y #contacto encabezuen bien y se vean completos en pantalla móvil
        --------------------------- */
 
     /* Default hidden mobile elements (enabled in media query) */
@@ -484,19 +482,17 @@
       /* Remove particles completely in mobile for performance */
       .particles { display: none !important; }
 
-      /* Show hamburger toggle and keep it fixed so it's always available */
+      /* Show hamburger toggle */
       .nav-toggle {
         display: block;
-        position: fixed;    /* <-- CHANGED: fixed so it stays in the top-right on mobile */
+        position: absolute;
         right: 12px;
-        top: 12px;
-        z-index: 9999;      /* very high so it stays above modal/header */
-        background: rgba(80,41,72,0.85);
+        top: 10px;
+        z-index: 160;
+        background: transparent;
         border: 0;
         padding: 8px;
-        border-radius: 10px;
         cursor: pointer;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.18);
       }
       .nav-toggle .bar {
         display: block;
@@ -522,7 +518,7 @@
       /* hide original desktop nav-links */
       nav .nav-links { display: none; }
 
-      /* reduce nav bar height but keep visible to preserve desktop look */
+      /* keep nav bar visible but reduce height */
       nav { padding: 8px 0; justify-content: center; }
 
       /* Modal overlay (covers content behind modal) */
@@ -531,7 +527,7 @@
         position: fixed;
         inset: 0;
         background: rgba(0,0,0,0.45);
-        z-index: 9990;
+        z-index: 155;
         opacity: 0;
         transition: opacity 220ms ease;
         pointer-events: none;
@@ -550,12 +546,12 @@
         transform: translate(-50%, -48%) scale(0.96);
         width: calc(100% - 48px);
         max-width: 520px;
-        max-height: calc(100vh - 120px);
+        max-height: calc(100vh - 80px);
         overflow-y: auto;
         background: rgba(255,244,250,0.98);
         box-shadow: 0 12px 40px rgba(80,41,72,0.2);
         border-radius: 14px;
-        z-index: 9995;
+        z-index: 160;
         padding: 28px 20px;
         opacity: 0;
         visibility: hidden;
@@ -583,35 +579,7 @@
       header h1 { font-size: 1.4rem; }
       header p { font-size: 0.95rem; }
       .main { margin: 18px auto; padding: 18px; border-radius: 14px; }
-
-      /* CTA sizing on mobile */
       .cta { display: block; width: calc(100% - 40px); max-width: 420px; margin: 18px auto 24px auto; }
-
-      /* Memorial: ensure heading and gallery fit well on mobile screen
-         - use scroll-margin-top so anchor links position heading below fixed toggle/header
-         - limit gallery height to viewport minus header/toggle and allow internal scroll if needed
-      */
-      section { scroll-margin-top: 96px; } /* offset for fixed toggle/header */
-      #memorial .memorial {
-        max-height: calc(100vh - 160px); /* viewport minus estimated header + spacing */
-        overflow-y: auto;
-        align-items: center;
-        justify-content: center;
-        padding: 12px;
-      }
-
-      /* Contact: ensure contact heading and core info are visible on single screen where possible */
-      #contacto .contacto {
-        max-height: calc(100vh - 140px);
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 12px;
-      }
-      /* reduce padding for contact details so they fit better */
-      #contacto .contacto p { margin: 6px 0; font-size: 1rem; }
-
       .memorial { padding: 14px 12px; gap: 12px; }
       .memorial img { max-width: 48%; height: auto; min-width: 120px; margin: 6px; }
       .main, .servicio, .memorial, .faq, .contacto { box-shadow: 0 2px 8px rgba(80,41,72,0.08); transition: none; }
@@ -637,8 +605,7 @@
     <img src="Mascota 1.jpeg" alt="Logotipo Siempre A Tu Lado" width="200" height="200">
     <h1>Siempre A Tu Lado</h1>
     <p>Sé que no es un adiós para siempre porque estarás eternamente en nuestros corazones</p>
-
-    <!-- Botón hamburguesa (solo visible en móvil CSS) - ahora FIXED so always visible -->
+    <!-- Botón hamburguesa (solo visible en móvil) -->
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false">
       <span class="bar" aria-hidden="true"></span>
       <span class="bar" aria-hidden="true"></span>
@@ -647,7 +614,7 @@
   </header>
 
   <!-- Nav principal: en escritorio se ve exactamente igual.
-       On mobile the .nav-links are hidden and modal menu used. -->
+       En móvil las .nav-links se ocultan y se usa .mobile-menu -->
   <nav>
     <div class="nav-links">
       <a href="#servicios" class="activo">Servicios</a>
@@ -814,7 +781,7 @@
     crearParticulasCondicionales(18);
 
     // --------------------------
-    // Mobile modal centered menu + animated toggle (only active in mobile by CSS)
+    // Menú modal centrado + toggle animado (solo activo en móvil por CSS)
     // --------------------------
     (function() {
       const toggle = document.getElementById('navToggle');
