@@ -439,6 +439,12 @@
       /* Remove particles completely in mobile for performance */
       .particles { display: none !important; }
 
+      /* Reducir tamaño del correo SOLO en móvil */
+      .contacto a[href^="mailto"] {
+        font-size: 0.85rem;
+        word-break: break-all;
+      }
+
       /* Show hamburger toggle */
       .nav-toggle {
         display: block;
@@ -567,6 +573,7 @@
     </button>
   </header>
 
+  
   <!-- Nav principal: en escritorio se ve exactamente igual.
        En móvil las .nav-links se ocultan y se usa .mobile-menu -->
   <nav>
