@@ -316,29 +316,20 @@
       #faq ul li span {
         text-align: left;
       }
-    }
     /* ===============================
-       TEXTO JUSTIFICADO - NUESTROS VALORES
-       =============================== */
-    
-    /* Texto de las citas */
+   CENTRAR SOLO LAS CITAS
+   =============================== */
+
     #valores .valor blockquote {
-      text-align: justify;
-      hyphens: auto;
+      text-align: center;
     }
     
-    /* Autor alineado prolijo */
     #valores .valor .autor {
-      text-align: right;
+      display: block;
+      text-align: center;
     }
-    
-    /* Mejor legibilidad en móvil */
-    @media (max-width: 700px) {
-      #valores .valor blockquote {
-        text-align: left;
-      }
     }
-    
+      
     ::selection { background: #d07c9b; color: #fff; }
     }
     .particles {
