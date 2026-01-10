@@ -5,12 +5,17 @@
   <title>Siempre A Tu Lado - Servicios de Cremación para Mascotas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Servicios de cremación para mascotas en CABA y Gran Buenos Aires. Atención personalizada, ¿quiénes somos?, memorial, preguntas frecuentes y contacto. Sé que no es un adiós para siempre porque estarás eternamente en nuestros corazones.">
+  <!-- Mejora: Preconnect y preload fuentes para mejor performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
-    /* ---------------------------
-       ESTILOS PRINCIPALES (ESCRITORIO)
-       No se modificó nada que afecte la vista en escritorio.
-       Las mejoras móviles están en media queries más abajo.
-       --------------------------- */
+    /* --- ESTILOS PRINCIPALES --- */
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
     body {
       font-family: 'Merriweather', 'Segoe UI', Arial, Helvetica, sans-serif;
       background: url('https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1200&q=80') center center/cover no-repeat fixed;
@@ -55,28 +60,25 @@
       background: #fff;
       object-fit: cover;
       transition: transform 0.7s cubic-bezier(.6,.1,.49,1.02);
-      will-change: transform;
     }
-    header img:hover {
-      transform: rotate(-7deg) scale(1.09);
-    }
+    header img:hover { transform: rotate(-7deg) scale(1.09); }
     header h1 {
       font-family: 'Merriweather', serif;
       font-size: 2.4em;
       margin-bottom: 6px;
       letter-spacing: 2px;
       font-weight: 900;
+      text-shadow: 0 2px 8px #0002;
     }
     header p {
-      font-size: 1.22em;
+      font-size: 1.18em;
       font-weight: 400;
       font-style: italic;
       margin-top: 14px;
       color: #ffdbe5;
       letter-spacing: 1px;
+      margin-bottom: 0;
     }
-
-    /* NAV: mantiene exactamente el mismo aspecto en escritorio */
     nav {
       background: rgba(255,244,250,0.98);
       box-shadow: 0 2px 8px rgba(80,41,72,0.09);
@@ -98,14 +100,13 @@
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(248,187,208,0.04);
       position: relative;
-      transition: color 0.2s, background 0.2s, box-shadow 0.3s;
-      will-change: color, background, box-shadow;
+      transition: color 0.18s, background 0.18s, box-shadow 0.18s;
     }
     nav a:hover, nav .activo {
       color: #fff;
       background: #502948;
-      box-shadow: 0 4px 18px rgba(80,41,72,0.15);
-      text-shadow: 0 2px 8px rgba(80,41,72,0.11);
+      box-shadow: 0 4px 18px rgba(80,41,72,0.13);
+      text-shadow: 0 2px 8px rgba(80,41,72,0.06);
     }
     nav a::after {
       content:"";
@@ -123,14 +124,14 @@
       width:60%;
       left:20%;
     }
-
+    .nav-links a:focus { outline: 2px solid #d07c9b; }
     .main {
       max-width: 900px;
       margin: 40px auto 0 auto;
       padding: 34px 22px 22px 22px;
-      background: rgba(255,244,250,0.96);
+      background: rgba(255,244,250,0.97);
       border-radius: 24px;
-      box-shadow: 0 8px 64px rgba(80,41,72,0.11);
+      box-shadow: 0 8px 64px rgba(80,41,72,0.09);
       position: relative;
       animation: fadeInUp 1.2s cubic-bezier(.73,.15,.55,1.02);
     }
@@ -150,27 +151,24 @@
     @keyframes fadeInTitle {
       from { opacity: 0; letter-spacing: 12px;}
       to   { opacity: 1; letter-spacing: 1px;}
-    
+    }
+    section:target h2 {
+      text-decoration: underline wavy #ffc6e3 2px;
     }
     .servicios-lista {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 34px;
-      margin: 28px 0;
-      justify-content: center;
+      display: flex; flex-wrap: wrap; gap: 34px;
+      margin: 28px 0; justify-content: center;
     }
     .servicio {
       background: #fff;
       border: 1.2px solid #e1bee7;
       border-radius: 12px;
       flex: 1 1 220px;
-      min-width: 210px;
-      max-width: 280px;
-      padding: 26px 18px;
+      min-width: 210px; max-width: 280px;
+      padding: 26px 18px 20px 18px;
       box-shadow: 0 2px 10px rgba(80,41,72,0.07);
-      text-align: center;
-      position: relative;
-      transition: transform 0.2s, box-shadow 0.2s, border-color 0.4s, background 0.4s;
+      text-align: center; position: relative;
+      transition: transform 0.19s, box-shadow 0.19s, border-color 0.2s, background 0.2s;
       cursor: pointer;
       animation: fadeInCard 1.1s cubic-bezier(.6,.1,.49,1.02);
     }
@@ -179,8 +177,8 @@
       to { transform: scale(1) translateY(0); opacity: 1; }
     }
     .servicio:hover {
-      transform: translateY(-6px) scale(1.05) rotate(-1.5deg);
-      box-shadow: 0 16px 36px rgba(80,41,72,0.19);
+      transform: translateY(-6px) scale(1.045) rotate(-1.5deg);
+      box-shadow: 0 16px 36px rgba(80,41,72,0.17);
       border-color: #502948;
       background: #faf1f5;
     }
@@ -190,410 +188,186 @@
       font-family: 'Merriweather', serif;
       font-size: 1.15em;
       font-weight: 800;
-      transition: color 0.2s;
+      transition: color 0.15s;
     }
-    .servicio:hover h3 {
-      color:#d07c9b;
-    }
+    .servicio:hover h3 { color:#d07c9b; }
     .servicio img {
-      width: 54px;
-      height: 54px;
-      margin-bottom: 16px;
-      border-radius: 50%;
-      border: 2px solid #fad1e6;
-      object-fit: cover;
-      background: #faf1f5;
+      width: 52px; height: 52px; margin-bottom: 16px;
+      border-radius: 50%; border: 2px solid #fad1e6;
+      object-fit: cover; background: #faf1f5;
       box-shadow: 0 2px 8px rgba(248,187,208,0.09);
-      transition: transform 0.6s cubic-bezier(.73,.15,.55,1.02);
+      transition: transform 0.45s cubic-bezier(.73,.15,.55,1.02);
+      aspect-ratio: 1/1;
     }
-    .servicio:hover img {
-      transform: scale(1.18) rotate(7deg);
-    }
-
-    /* CTA (mantener EXACTAMENTE igual en escritorio) */
+    .servicio:hover img { transform: scale(1.13) rotate(7deg); }
+    .servicio a { color: #d07c9b; text-decoration: underline; }
     .cta {
       display: inline-block;
-      margin: 32px auto 56px auto; /* separación entre WhatsApp CTA y Memorial (escritorio) */
+      margin: 32px auto 56px auto; 
       background: linear-gradient(90deg,#502948 0%,#d07c9b 100%);
-      color: #fff;
-      border: none;
-      border-radius: 22px;
-      padding: 14px 34px;
-      font-size: 1.11em;
-      font-weight: 700;
+      color: #fff; border: none; border-radius: 22px;
+      padding: 14px 34px; font-size: 1.11em; font-weight: 700;
       text-decoration: none;
       transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
-      box-shadow: 0 2px 18px rgba(80,41,72,0.14);
-      letter-spacing: 1px;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      animation: fadeInUp 1.2s cubic-bezier(.73,.15,.55,1.02);
-      text-align: center;
+      box-shadow: 0 2px 18px rgba(80,41,72,0.13);
+      letter-spacing: 1px; position: relative; overflow: hidden; cursor: pointer;
+      animation: fadeInUp 1.2s cubic-bezier(.73,.15,.55,1.02); text-align: center;
     }
+    .cta:focus { outline: 2px solid #d07c9b; }
     .cta:hover {
       background: linear-gradient(90deg,#d07c9b 0%,#502948 100%);
-      color: #fff;
-      transform: scale(1.07);
-      box-shadow: 0 6px 26px rgba(80,41,72,0.19);
-      
+      color: #fff; transform: scale(1.07); box-shadow: 0 6px 26px rgba(80,41,72,0.19);
     }
     .faq {
-      background: #faf1f5;
-      border-radius: 12px;
-      padding: 26px 20px;
-      max-width: 650px;
-      margin: 36px auto;
-      box-shadow: 0 1px 14px rgba(80,41,72,0.13);
-      transition: box-shadow 0.4s, background 0.4s;
+      background: #faf1f5; border-radius: 12px; padding: 26px 20px;
+      max-width: 650px; margin: 36px auto; box-shadow: 0 1px 14px rgba(80,41,72,0.13);
       animation: fadeInCard 1.1s cubic-bezier(.73,.15,.55,1.02);
     }
     .faq:hover {
-      box-shadow: 0 6px 40px rgba(80,41,72,0.24);
+      box-shadow: 0 6px 40px rgba(80,41,72,0.21);
       background: #fff;
     }
     .faq h3 {
-      color: #502948;
-      font-size: 1.17em;
-      font-family: 'Merriweather', serif;
-      margin-top: 0;
-      transition: color 0.2s;
-      font-weight: 700;
+      color: #502948; font-size: 1.14em; font-family: 'Merriweather', serif;
+      margin-top: 0; font-weight: 700;
     }
-    .faq:hover h3 {
-      color:#d07c9b;
-    }
-    .faq ul {
-      padding-left: 20px;
-      font-size: 1.07em;
-      line-height: 1.6;
-      color: #444;
-    }
-    .faq ul span {
-      color:#d07c9b;
-    }
-    .valores-lista {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 28px;
-      justify-content: center;
-      margin: 24px 0 16px 0;
-    }
+    .faq ul { padding-left: 20px; font-size: 1.07em; line-height: 1.6; color: #444; }
+    .faq ul span { color:#d07c9b; }
+    .valores-lista { display: flex; flex-wrap: wrap; gap: 28px; justify-content: center; margin: 24px 0 16px 0; }
     .valor {
-      background: #faf1f5;
-      border: 1.5px solid #e1bee7;
-      border-radius: 16px;
-      box-shadow: 0 2px 10px rgba(80,41,72,0.10);
-      max-width: 350px;
-      padding: 24px 18px;
-      flex: 1 1 220px;
+      background: #faf1f5; border: 1.5px solid #e1bee7;
+      border-radius: 16px; box-shadow: 0 2px 10px rgba(80,41,72,0.09);
+      max-width: 350px; padding: 24px 18px; flex: 1 1 220px;
       font-family: 'Merriweather', serif;
     }
     .valor h4 {
-      color: #502948;
-      margin-bottom: 10px;
-      font-size: 1.18em;
-      font-weight: 700;
-      letter-spacing: 1px;
+      color: #502948; margin-bottom: 10px; font-size: 1.18em; font-weight: 700; letter-spacing: 1px;
     }
     .valor blockquote {
-      font-size: 1.06em;
-      font-style: italic;
-      color: #333;
-      margin: 0 0 12px 0;
-      padding: 0;
-      border-left: 3px solid #d07c9b;
-      background: transparent;
+      font-size: 1.06em; font-style: italic; color: #333; margin: 0 0 12px 0; padding: 0;
+      border-left: 3px solid #d07c9b; background: transparent;
     }
-    .valor .autor {
-      color: #d07c9b;
-      font-size: 0.97em;
-      font-style: normal;
-      font-weight: 600;
-    }
+    .valor .autor { color: #d07c9b; font-size: 0.97em; font-weight: 600; }
     @media (max-width: 700px) {
       .valores-lista { flex-direction: column; gap: 16px; }
       .valor { max-width: 98vw; } 
     }
     .contacto {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 1px 10px rgba(80,41,72,0.09);
-      padding: 34px 20px;
-      max-width: 520px;
-      margin: 44px auto 0 auto;
-      text-align: center;
-      animation: fadeInCard 1.2s cubic-bezier(.73,.15,.55,1.02);
-      position:relative;
+      background: #fff; border-radius: 12px; box-shadow: 0 1px 10px rgba(80,41,72,0.09);
+      padding: 34px 20px; max-width: 520px; margin: 44px auto 0 auto; text-align: center;
+      animation: fadeInCard 1.2s cubic-bezier(.73,.15,.55,1.02); position:relative;
     }
-    .contacto::before {
-      content: "";
-      position: absolute;
-      left: -30px;
-      top: -30px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: rgba(80,41,72,0.13);
-      z-index: 0;
-      filter: blur(6px);
+    .contacto:before {
+      content: ""; position: absolute; left: -30px; top: -30px;
+      width: 60px; height: 60px; border-radius: 50%;
+      background: rgba(80,41,72,0.13); z-index: 0; filter: blur(6px);
     }
-    .contacto a {
-      color: #502948;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.2s;
-      z-index:10;
-      position:relative;
+    .contacto a { color: #502948; text-decoration: none; font-weight: bold; z-index:10; position:relative; }
+    .contacto a:hover, .contacto a:focus {
+      color: #d07c9b; text-decoration: underline; outline: none;
     }
-    .contacto a:hover {
-      color: #d07c9b;
-      text-decoration: underline;
-    }
-    .redes {
-      display: flex;
-      gap: 24px;
-      justify-content: center;
-      margin-top: 20px;
-      align-items: center;
-      z-index:10;
-      position:relative;
-    }
+    .redes { display: flex; gap: 24px; justify-content: center; margin-top: 20px; align-items: center; z-index:10; position:relative; }
     .redes a img {
-      width: 32px;
-      height: 32px;
-      border-radius: 6px;
+      width: 32px; height: 32px; border-radius: 6px;
       box-shadow: 0 1px 4px rgba(80,41,72,0.11);
       transition: transform 0.3s, box-shadow 0.3s;
       filter: grayscale(40%);
     }
-    /* Ícono de correo */
     .email-icon img {
-      width: 34px;
-      height: 34px;
-      margin-top: 8px;
-      border-radius: 6px;
-      box-shadow: 0 1px 4px rgba(80,41,72,0.11);
-      transition: transform 0.3s, box-shadow 0.3s;
+      width: 34px; height: 34px; margin-top: 8px; border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(80,41,72,0.11); transition: transform 0.3s, box-shadow 0.3s;
     }
-    
-    /* Hover escritorio */
-    .email-icon:hover img {
-      transform: scale(1.18) rotate(-6deg);
-      box-shadow: 0 8px 22px rgba(80,41,72,0.22);
+    .email-icon:hover img, .email-icon:focus img {
+      transform: scale(1.18) rotate(-6deg); box-shadow: 0 8px 22px rgba(80,41,72,0.22);
     }
-
-    .redes a:hover img {
-      transform: scale(1.18) rotate(-7deg);
-      box-shadow: 0 8px 22px rgba(80,41,72,0.22);
-      filter: none;
+    .redes a:hover img, .redes a:focus img {
+      transform: scale(1.17) rotate(-6deg); box-shadow: 0 8px 22px rgba(80,41,72,0.18); filter: none;
     }
     footer {
-     text-align: center;
-      padding: 30px 0 14px 0;
+      text-align: center; padding: 30px 0 14px 0;
       background: linear-gradient(90deg,#502948 0%, #502948 100%);
-      color: #fff;
-      margin-top: 64px;
-      border-top: 2px solid #e1bee7;
-      font-size: 1.07em;
-      font-family: 'Merriweather', serif;
-      letter-spacing: 1px;
-      box-shadow: 0 -2px 10px rgba(80,41,72,0.08);
-      animation: fadeIn 2s;
+      color: #fff; margin-top: 64px; border-top: 2px solid #e1bee7;
+      font-size: 1.05em; font-family: 'Merriweather', serif; letter-spacing: 0.7px;
+      box-shadow: 0 -2px 10px rgba(80,41,72,0.05); animation: fadeIn 2s;
     }
-
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 1.2s forwards;
-    }
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-    ::selection {
-      background: #d07c9b;
-      color: #fff;
-    }
+    .fade-in { opacity: 0; animation: fadeIn 1.2s forwards; }
+    @keyframes fadeIn { to { opacity: 1; }}
+    ::selection { background: #d07c9b; color: #fff; }
     .particles {
-      position: fixed;
-      pointer-events: none;
-      inset: 0;
-      z-index: 1;
-      overflow: hidden;
+      position: fixed; pointer-events: none; inset: 0; z-index: 1; overflow: hidden;
     }
     .particle {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.13;
-      background: #d07c9b;
-      pointer-events:none;
-      animation: particleMove 13s linear infinite;
+      position: absolute; border-radius: 50%; opacity: 0.13; background: #d07c9b;
+      pointer-events:none; animation: particleMove 13s linear infinite;
     }
     @keyframes particleMove {
-      from {
-        transform: translateY(0) scale(1);
-        opacity: 0.18;
-      }
-      to {
-        transform: translateY(120vh) scale(1.3);
-        opacity: 0.07;
-      }
+      from { transform: translateY(0) scale(1); opacity: 0.18; }
+      to { transform: translateY(120vh) scale(1.3); opacity: 0.07; }
     }
-
-    /* ---------------------------
-       CAMBIOS EXTRAS SOLO EN MÓVIL (Android / iPhone)
-       - Modal centrado para mobile menu (en vez de slide-right)
-       - Toggle animado a "X" cuando se abre
-       - Eliminar partículas totalmente en móvil
-       --------------------------- */
-    /* Default hidden mobile elements (enabled in media query) */
+    /* ========= MOBILE MEJORAS ========= */
     .nav-toggle { display: none; }
     .mobile-overlay { display: none; }
     .mobile-menu { display: none; }
-
     @media (max-width: 700px) {
-
-      .email-icon img {
-        width: 38px;
-        height: 38px;
-      }
-
-      /* Remove particles completely in mobile for performance */
+      .email-icon img { width: 38px; height: 38px; }
       .particles { display: none !important; }
-
-      /* Show hamburger toggle */
       .nav-toggle {
-        display: block;
-        position: absolute;
-        right: 12px;
-        top: 10px;
-        z-index: 160;
-        background: transparent;
-        border: 0;
-        padding: 8px;
-        cursor: pointer;
+        display: block; position: absolute; right: 12px; top: 10px; z-index: 160;
+        background: transparent; border: 0; padding: 8px; cursor: pointer;
       }
       .nav-toggle .bar {
-        display: block;
-        width: 26px;
-        height: 3px;
-        background: #fff;
-        margin: 5px 0;
-        border-radius: 3px;
-        transition: transform 260ms cubic-bezier(.2,.9,.2,1), opacity 200ms ease, background 200ms ease;
+        display: block; width: 26px; height: 3px; background: #fff; margin: 5px 0; border-radius: 3px;
+        transition: transform 260ms cubic-bezier(.2,.9,.2,1), opacity 200ms, background 200ms;
       }
-
-      /* Toggle animation to X when .open is added */
-      .nav-toggle.open .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-      }
-      .nav-toggle.open .bar:nth-child(2) {
-        opacity: 0;
-      }
-      .nav-toggle.open .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-      }
-
-      /* hide original desktop nav-links */
+      .nav-toggle.open .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+      .nav-toggle.open .bar:nth-child(2) { opacity: 0; }
+      .nav-toggle.open .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
       nav .nav-links { display: none; }
-
-      /* keep nav bar visible but reduce height */
       nav { padding: 8px 0; justify-content: center; }
-
-      /* Modal overlay (covers content behind modal) */
       .mobile-overlay {
-        display: block;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.45);
-        z-index: 155;
-        opacity: 0;
-        transition: opacity 220ms ease;
-        pointer-events: none;
+        display: block; position: fixed; inset: 0;
+        background: rgba(0,0,0,0.45); z-index: 155; opacity: 0; transition: opacity 220ms; pointer-events: none;
       }
-      .mobile-overlay.visible {
-        opacity: 1;
-        pointer-events: auto;
-      }
-
-      /* Modal centered panel */
+      .mobile-overlay.visible { opacity: 1; pointer-events: auto; }
       .mobile-menu {
-        display: block;
-        position: fixed;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -48%) scale(0.96);
-        width: calc(100% - 48px);
-        max-width: 520px;
-        max-height: calc(100vh - 80px);
-        overflow-y: auto;
-        background: rgba(255,244,250,0.98);
-        box-shadow: 0 12px 40px rgba(80,41,72,0.2);
-        border-radius: 14px;
-        z-index: 160;
-        padding: 28px 20px;
-        opacity: 0;
-        visibility: hidden;
-        transition: transform 260ms cubic-bezier(.2,.9,.2,1), opacity 220ms ease, visibility 220ms;
+        display: block; position: fixed; left: 50%; top: 50%; transform: translate(-50%, -48%) scale(0.96);
+        width: calc(100% - 48px); max-width: 520px; max-height: calc(100vh - 80px); overflow-y: auto;
+        background: rgba(255,244,250,0.98); box-shadow: 0 12px 40px rgba(80,41,72,0.19); border-radius: 14px;
+        z-index: 160; padding: 28px 20px; opacity: 0; visibility: hidden;
+        transition: transform 260ms cubic-bezier(.2,.9,.2,1), opacity 220ms, visibility 220ms;
       }
-      .mobile-menu.open {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-        visibility: visible;
-      }
-
+      .mobile-menu.open { transform: translate(-50%, -50%) scale(1); opacity: 1; visibility: visible; }
       .mobile-menu a {
-        display: block;
-        padding: 12px 10px;
-        color: #502948;
-        text-decoration: none;
-        font-weight: 700;
-        border-radius: 8px;
-        margin-bottom: 8px;
+        display: block; padding: 12px 10px; color: #502948; text-decoration: none;
+        font-weight: 700; border-radius: 8px; margin-bottom: 8px;
       }
-      .mobile-menu a.activo { background: #502948; color: #fff; }
-
-      /* Mobile typography / layout tweaks */
+      .mobile-menu a.activo, .mobile-menu a:focus { background: #502948; color: #fff; }
       header { padding-top: 56px; }
       header h1 { font-size: 1.4rem; }
       header p { font-size: 0.95rem; }
       .main { margin: 18px auto; padding: 18px; border-radius: 14px; }
-      .cta { display: block; box-sizing: border-box; width: 100%; max-width: 280px; margin: 18px auto 24px auto; padding: 14px 18px; }
-      .main, .servicio, .faq, .contacto { box-shadow: 0 2px 8px rgba(80,41,72,0.08); transition: none; }
-      nav a, .cta, .contacto a { min-height: 44px; line-height: 1.2; }
+      .cta { display: block; width: 100%; max-width: 280px; margin: 18px auto 24px auto; }
       section { margin-bottom: 14px; }
     }
-     /* Evitar desplazamiento lateral en móvil */
-     html, body {
-      max-width: 100%;
-      overflow-x: hidden;
-    }
-    /* Very small screens adjustment */
     @media (max-width: 420px) {
       header h1 { font-size: 1.2rem; }
       header img { left: 10px; top: 8px; width: 52px; height: 52px; }
       .mobile-menu { width: calc(100% - 28px); padding: 18px 12px; }
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Partículas: en escritorio se mostrarán; en móvil el CSS oculta .particles -->
-  <div class="particles" id="particles"></div>
-
+  <div class="particles" id="particles" aria-hidden="true"></div>
   <header>
-    <img src="Mascota 1.jpeg" alt="Logotipo Siempre A Tu Lado" width="150" height="150">
+    <img src="Mascota 1.jpeg" alt="Logotipo Siempre A Tu Lado" width="150" height="150" loading="lazy">
     <h1>Siempre A Tu Lado</h1>
     <p>Sé que no es un adiós para siempre porque estarás eternamente en nuestros corazones</p>
-    <!-- Botón hamburguesa (solo visible en móvil) -->
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false">
       <span class="bar" aria-hidden="true"></span>
       <span class="bar" aria-hidden="true"></span>
       <span class="bar" aria-hidden="true"></span>
     </button>
   </header>
-
-  <!-- Nav principal: en escritorio se ve exactamente igual.
-       En móvil las .nav-links se ocultan y se usa .mobile-menu -->
   <nav>
     <div class="nav-links">
       <a href="#quienes-somos">¿Quiénes somos?</a>
@@ -603,11 +377,9 @@
       <a href="#contacto">Contacto</a>
     </div>
   </nav>
-
-  <!-- Overlay for modal (only used in mobile) -->
+  <!-- Overlay for mobile -->
   <div id="mobileOverlay" class="mobile-overlay" aria-hidden="true"></div>
-
-  <!-- Mobile menu modal (hidden by default; toggled via JS only on mobile) -->
+  <!-- Mobile menu -->
   <aside id="mobileMenu" class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="true">
     <a href="#quienes-somos">¿Quiénes somos?</a>
     <a href="#servicios">Servicios</a>
@@ -615,66 +387,60 @@
     <a href="#valores">Nuestros Valores</a>
     <a href="#contacto">Contacto</a>
   </aside>
-
   <div class="main fade-in">
     <section id="quienes-somos">
-    <h2>¿Quiénes somos?</h2>
+      <h2>¿Quiénes somos?</h2>
       <p style="font-size:1.08em; line-height:1.65; color:#444; max-width:760px; margin:18px auto 28px auto;">
-      Somos una empresa dedicada a la <strong>cremación de mascotas</strong>, con más de 
-      <strong>10 años de experiencia</strong> acompañando a las familias en el momento de la despedida.
-      Trabajamos con respeto, amor y empatía, honrando el vínculo único que une a cada mascota
-      con su familia. Nuestro compromiso es brindar contención, cuidado y una despedida digna,
-      porque entendemos que no se trata solo de decir adiós, sino de agradecer todo el amor compartido.
-    </p>
-    </div>
-  </section>
-
+        Somos una empresa dedicada a la <strong>cremación de mascotas</strong>, con más de 
+        <strong>10 años de experiencia</strong> acompañando a las familias en el momento de la despedida.<br>
+        Trabajamos con respeto, amor y empatía, honrando el vínculo único entre cada mascota y su familia. Nuestro compromiso es brindar <strong>contención</strong> y <strong>una despedida digna</strong>: entendemos que no se trata solo de decir adiós, sino de agradecer todo el amor compartido.
+      </p>
+    </section>
     <section id="servicios">
       <h2>Servicios Funerarios para Mascotas</h2>
       <div class="servicios-lista">
         <div class="servicio">
-          <img src="Logo siempre a tu lado.PNG" alt="Logotipo Siempre A Tu Lado" width="200" height="200">
+          <img src="Logo siempre a tu lado.PNG" alt="Logotipo Siempre A Tu Lado" width="200" height="200" loading="lazy">
           <h3>Cremación Individual</h3>
-          <p>Servicio exclusivo y respetuoso. Las cenizas de tu mascota se entregan en urna personalizada, junto con certificado de cremación y atención profesional.</p>
+          <p>Servicio exclusivo y respetuoso. Las cenizas de tu mascota se entregan en urna personalizada, con certificado de cremación y atención profesional.</p>
         </div>
         <div class="servicio">
-          <img src="Logo siempre a tu lado.PNG" alt="Logotipo Siempre A Tu Lado" width="200" height="200">
+          <img src="Logo siempre a tu lado.PNG" alt="Logotipo Siempre A Tu Lado" width="200" height="200" loading="lazy">
           <h3>Cremación Colectiva</h3>
           <p>Alternativa económica, realizada con el mismo cuidado y respeto. Las cenizas no se entregan.</p>
         </div>
         <div class="servicio">
-          <img src="Logo siempre a tu lado.PNG" alt="Logotipo Siempre A Tu Lado" width="200" height="200">
+          <img src="Logo siempre a tu lado.PNG" alt="Logotipo Siempre A Tu Lado" width="200" height="200" loading="lazy">
           <h3>Retiro a Domicilio</h3>
-          <p>Retiramos a tu mascota en domicilio o clínica veterinaria, en CABA y Gran Buenos Aires, con vehículos adaptados y personal capacitado.</p>
+          <p>Retiramos a tu mascota en domicilio o clínica veterinaria en CABA y GBA, con vehículos adaptados y personal capacitado.</p>
         </div>
         <div class="servicio">
-          <img src="Logo siempre a tu lado.PNG" alt="Logotipo Siempre A Tu Lado" width="200" height="200">
+          <img src="Logo siempre a tu lado.PNG" alt="Logotipo Siempre A Tu Lado" width="200" height="200" loading="lazy">
           <h3>Urnas y Recuerdos</h3>
-          <p>Ofrecemos variedad de urnas y recuerdos para conservar a tu ser especial. <a href="Catálogo Siempre A Tu Lado 2026.pdf" target="_blank" rel="noopener">Ver catálogo</a></p>
+          <p>Variedad de urnas y recuerdos para conservar a tu ser especial. 
+            <a href="Catálogo Siempre A Tu Lado 2026.pdf" target="_blank" rel="noopener">Ver catálogo</a>
+          </p>
         </div>
       </div>
-
       <a class="cta" href="https://wa.me/5491136584970" target="_blank" rel="noopener">Solicitar servicio por WhatsApp</a>
     </section>
-
     <section class="faq" id="faq">
       <h2>Preguntas Frecuentes</h2>
       <ul>
-        <li>¿Cómo sé que las cenizas son de mi mascota?<br>
-          <span>La cremación individual garantiza que las cenizas entregadas corresponden exclusivamente a tu mascota. Se incluye el certificado de cremación.</span>
+        <li><strong>¿Cómo sé que las cenizas son de mi mascota?</strong><br>
+          <span>La cremación individual garantiza que las cenizas entregadas corresponden exclusivamente a tu mascota. Se incluye certificado de cremación.</span>
         </li>
-        <li>¿Qué tipos de urnas ofrecen?<br>
-          <span>Disponemos de urnas de madera, económicas y opciones personalizadas. También incluimos recuerdos especiales.</span>
+        <li><strong>¿Qué tipos de urnas ofrecen?</strong><br>
+          <span>Urnas de madera, económicas y opciones personalizadas. También recuerdos especiales.</span>
         </li>
-        <li>¿Qué hago si mi mascota falleció en casa?<br>
-          <span>Podés contactarnos por WhatsApp las 24 horas para coordinar el retiro en domicilio o la recepción de tu mascota.</span>
+        <li><strong>¿Qué hago si mi mascota falleció en casa?</strong><br>
+          <span>Contactanos por WhatsApp las 24 horas para coordinar el retiro.</span>
         </li>
-        <li>¿Cuál es el tiempo de espera de la entrega de la urna?<br>
-          <span>El tiempo de espera puede variar desde 72 horas hasta 10 días, dependiendo del tipo de servicio elegido.</span>
+        <li><strong>¿Cuál es el tiempo de espera para la entrega de la urna?</strong><br>
+          <span>Puede variar de 72hs a 10 días, según el servicio elegido.</span>
         </li>
       </ul>
     </section>
-
     <section id="valores">
       <h2>Nuestros Valores</h2>
       <div class="valores-lista">
@@ -695,7 +461,7 @@
         <div class="valor">
           <h4>Compromiso</h4>
           <blockquote>
-            “Uno a veces es sorprendido por estos momentos dolorosos y no sabe como reaccionar ni para donde correr. Encontré de casualidad el servicio que ofrece Siempre a tu lado y nos ayudó muchísimo a poder afrontar este momento de la pérdida de nuestra perrita. Son muy bondadosos y prolijos al respecto. Recomiendo totalmente.”<br>
+            “Uno a veces es sorprendido por estos momentos dolorosos y no sabe cómo reaccionar ni para dónde correr. Encontré de casualidad el servicio que ofrece Siempre a tu lado y nos ayudó muchísimo a poder afrontar este momento de la pérdida de nuestra perrita. Son muy bondadosos y prolijos al respecto. Recomiendo totalmente.”<br>
             <span class="autor">– Opinión de Google</span>
           </blockquote>
         </div>
@@ -706,39 +472,32 @@
             <span class="autor">– Opinión de Google</span>
           </blockquote>
         </div>
-      </div> 
+      </div>
     </section>
-
     <section class="contacto" id="contacto">
       <h2>Contacto</h2>
       <a class="email-icon" href="mailto:cremacionessiempreatulado@gmail.com" aria-label="Enviar correo">
         <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email">
       </a>
       <div class="redes">
-        <a href="https://www.facebook.com/profile.php?id=100065671501966#" target="_blank" title="Facebook"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
-        <a href="https://www.instagram.com/siempre_a_tu_lado_cremaciones/?hl=es" target="_blank" title="Instagram"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
-        <a href="https://wa.me/5491136584970" target="_blank" title="WhatsApp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"></a>
+        <a href="https://www.facebook.com/profile.php?id=100065671501966#" target="_blank" title="Facebook" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+        <a href="https://www.instagram.com/siempre_a_tu_lado_cremaciones/?hl=es" target="_blank" title="Instagram" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+        <a href="https://wa.me/5491136584970" target="_blank" title="WhatsApp" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"></a>
       </div>
     </section>
   </div>
-
   <footer>
     &copy; 2025 Siempre A Tu Lado | Servicios de Cremación para Mascotas | CABA y Gran Buenos Aires
   </footer>
-
   <script>
-    // --------------------------
-    // Partículas condicionales:
-    // - Escritorio: EXACTAMENTE 18 partículas (comportamiento original).
-    // - Móvil (<=700px): 0 partículas (se eliminan totalmente).
-    // --------------------------
+    // Partículas solo en escritorio, y regeneración sensible a rotación
     function crearParticulasCondicionales(num) {
       const container = document.getElementById('particles');
       if (!container) return;
       const mq = window.matchMedia('(max-width: 700px)');
       const isSmall = mq.matches;
-      const cantidad = isSmall ? 0 : num; // mobile: 0, desktop: num (18)
-      // crear partículas
+      const cantidad = isSmall ? 0 : num;
+      container.innerHTML = '';
       for (let i = 0; i < cantidad; i++) {
         const p = document.createElement('div');
         p.className = 'particle';
@@ -749,42 +508,27 @@
         p.style.animationDuration = (10 + Math.random() * 9) + 's';
         container.appendChild(p);
       }
-      // Si hay cambio de media (e.g. rotación), recrear
-      const recreate = () => {
-        container.innerHTML = '';
-        crearParticulasCondicionales(num);
-      };
-      if (mq.addEventListener) {
-        mq.addEventListener('change', recreate);
-      } else if (mq.addListener) {
-        mq.addListener(recreate);
-      }
+      const recreate = () => { container.innerHTML = ''; crearParticulasCondicionales(num); };
+      if (mq.addEventListener) mq.addEventListener('change', recreate);
+      else if (mq.addListener) mq.addListener(recreate);
     }
     crearParticulasCondicionales(18);
 
-    // --------------------------
-    // Menú modal centrado + toggle animado (solo activo en móvil por CSS)
-    // --------------------------
+    // Menú modal móvil accesible
     (function() {
       const toggle = document.getElementById('navToggle');
       const mobileMenu = document.getElementById('mobileMenu');
       const overlay = document.getElementById('mobileOverlay');
-
-      if (!toggle || !mobileMenu || !overlay) return;
-
       function openMenu() {
         mobileMenu.classList.add('open');
         overlay.classList.add('visible');
-        toggle.classList.add('open'); // animate bars -> X
+        toggle.classList.add('open');
         toggle.setAttribute('aria-expanded', 'true');
         mobileMenu.setAttribute('aria-hidden', 'false');
         overlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden'; // prevent background scroll
-        // focus first link
-        const firstLink = mobileMenu.querySelector('a');
-        if (firstLink) firstLink.focus();
+        document.body.style.overflow = 'hidden';
+        setTimeout(()=>{const l=mobileMenu.querySelector('a');l&&l.focus();},50);
       }
-
       function closeMenu() {
         mobileMenu.classList.remove('open');
         overlay.classList.remove('visible');
@@ -795,35 +539,19 @@
         document.body.style.overflow = '';
         toggle.focus();
       }
-
-      toggle.addEventListener('click', () => {
-        const opened = mobileMenu.classList.contains('open');
-        if (opened) closeMenu(); else openMenu();
-      });
-
-      // close when clicking overlay
-      overlay.addEventListener('click', closeMenu);
-
-      // close when clicking a link inside menu
-      mobileMenu.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') closeMenu();
-      });
-
-      // close on Escape
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeMenu();
-      });
-
-      // ensure menu closes when switching to desktop
-      const mqDesktop = window.matchMedia('(min-width: 701px)');
-      const handler = () => { if (mqDesktop.matches) closeMenu(); };
-      if (mqDesktop.addEventListener) mqDesktop.addEventListener('change', handler);
-      else if (mqDesktop.addListener) mqDesktop.addListener(handler);
+      if(toggle && mobileMenu && overlay){
+        toggle.addEventListener('click', ()=> mobileMenu.classList.contains('open') ? closeMenu():openMenu());
+        overlay.addEventListener('click', closeMenu);
+        mobileMenu.addEventListener('click', (e)=>{if (e.target.tagName === 'A')closeMenu();});
+        window.addEventListener('keydown', (e)=>{if(e.key==='Escape') closeMenu();});
+        const mqDesktop = window.matchMedia('(min-width: 701px)');
+        const handler = () => { if (mqDesktop.matches) closeMenu(); };
+        if (mqDesktop.addEventListener) mqDesktop.addEventListener('change', handler);
+        else if (mqDesktop.addListener) mqDesktop.addListener(handler);
+      }
     })();
 
-    // --------------------------
-    // Scroll reveal (igual que antes)
-    // --------------------------
+    // Fade scroll reveal para elementos destacados
     function revealOnScroll() {
       const fadeEls = document.querySelectorAll('.fade-in, .servicio, .faq, .contacto');
       fadeEls.forEach(el => {
