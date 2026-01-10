@@ -236,7 +236,7 @@
       transform: scale(1.07);
       box-shadow: 0 6px 26px rgba(80,41,72,0.19);
     }
-
+    
     .faq {
       background: #faf1f5;
       border-radius: 12px;
@@ -349,26 +349,6 @@
       color: #d07c9b;
       text-decoration: underline;
     }
-    /* Botón correo (base – escritorio y móvil) */
-    .email-btn {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 10px 16px;
-      border-radius: 12px;
-      background: #faf1f5;
-      border: 2px solid #d07c9b;
-      color: #502948;
-      font-weight: 700;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-    }
-    /* Hover escritorio */
-    .email-btn:hover {
-      background: #d07c9b;
-      color: #fff;
-      transform: scale(1.05);
-      box-shadow: 0 4px 16px rgba(80,41,72,0.25);
-    }
     .redes {
       display: flex;
       gap: 24px;
@@ -459,27 +439,6 @@
       /* Remove particles completely in mobile for performance */
       .particles { display: none !important; }
 
-      /* Reducir tamaño del correo SOLO en móvil */
-      .contacto a[href^="mailto"] {
-        font-size: 0.80rem;
-        word-break: break-all;
-      }
-
-       /* Botón correo – ajuste fino en móvil */
-      .email-btn {
-        display: inline-block;
-        width: auto;
-        max-width: 85%;
-        font-size: 0.95rem;
-        padding: 10px 12px;
-        margin-top: 8px;
-        text-align: center;
-        word-break: break-all;
-        border-radius: 10px;
-      }
-
-      }
-      
       /* Show hamburger toggle */
       .nav-toggle {
         display: block;
@@ -608,7 +567,6 @@
     </button>
   </header>
 
-  
   <!-- Nav principal: en escritorio se ve exactamente igual.
        En móvil las .nav-links se ocultan y se usa .mobile-menu -->
   <nav>
@@ -715,9 +673,7 @@
     <section class="contacto" id="contacto">
       <h2>Contacto</h2>
       <p>WhatsApp: <a href="https://wa.me/5491136584970" target="_blank">5491136584970</a> <br>
-      <a class="email-btn" href="mailto:cremacionessiempreatulado@gmail.com">
-      cremacionessiempreatulado@gmail.com
-      </a>
+      Correo: <a href="mailto:cremacionessiempreatulado@gmail.com">cremacionessiempreatulado@gmail.com</a></p>
       <div class="redes">
         <a href="https://www.facebook.com/profile.php?id=100065671501966#" target="_blank" title="Facebook"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
         <a href="https://www.instagram.com/siempre_a_tu_lado_cremaciones/?hl=es" target="_blank" title="Instagram"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
