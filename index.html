@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Siempre A Tu Lado - Servicios de Cremación para Mascotas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Servicios de cremación para mascotas en CABA y Gran Buenos Aires. Atención personalizada, memorial, preguntas frecuentes y contacto. Sé que no es un adiós para siempre porque estarás eternamente en nuestros corazones.">
+  <meta name="description" content="Servicios de cremación para mascotas en CABA y Gran Buenos Aires. Atención personalizada, servicios, preguntas frecuentes y contacto. Sé que no es un adiós para siempre porque estarás eternamente en nuestros corazones.">
   <style>
     /* ---------------------------
        ESTILOS PRINCIPALES (ESCRITORIO)
@@ -537,7 +537,7 @@
       header p { font-size: 0.95rem; }
       .main { margin: 18px auto; padding: 18px; border-radius: 14px; }
       .cta { display: block; width: calc(100% - 40px); max-width: 420px; margin: 18px auto 24px auto; }
-      .main, .servicio, .memorial, .faq, .contacto { box-shadow: 0 2px 8px rgba(80,41,72,0.08); transition: none; }
+      .main, .servicio, .faq, .contacto { box-shadow: 0 2px 8px rgba(80,41,72,0.08); transition: none; }
       nav a, .cta, .contacto a { min-height: 44px; line-height: 1.2; }
       section { margin-bottom: 14px; }
     }
@@ -572,7 +572,6 @@
   <nav>
     <div class="nav-links">
       <a href="#servicios" class="activo">Servicios</a>
-      <a href="#memorial">Memorial</a>
       <a href="#faq">Preguntas Frecuentes</a>
       <a href="#valores">Nuestros Valores</a>
       <a href="#contacto">Contacto</a>
@@ -786,7 +785,7 @@
     // Scroll reveal (igual que antes)
     // --------------------------
     function revealOnScroll() {
-      const fadeEls = document.querySelectorAll('.fade-in, .servicio, .memorial img, .faq, .contacto');
+      const fadeEls = document.querySelectorAll('.fade-in, .servicio, .faq, .contacto');
       fadeEls.forEach(el => {
         const rect = el.getBoundingClientRect();
         if (rect.top < window.innerHeight - 40) {
