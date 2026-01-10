@@ -317,7 +317,28 @@
         text-align: left;
       }
     }
-
+    /* ===============================
+       TEXTO JUSTIFICADO - NUESTROS VALORES
+       =============================== */
+    
+    /* Texto de las citas */
+    #valores .valor blockquote {
+      text-align: justify;
+      hyphens: auto;
+    }
+    
+    /* Autor alineado prolijo */
+    #valores .valor .autor {
+      text-align: right;
+    }
+    
+    /* Mejor legibilidad en móvil */
+    @media (max-width: 700px) {
+      #valores .valor blockquote {
+        text-align: left;
+      }
+    }
+    
     ::selection { background: #d07c9b; color: #fff; }
     }
     .particles {
