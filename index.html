@@ -236,7 +236,7 @@
       transform: scale(1.07);
       box-shadow: 0 6px 26px rgba(80,41,72,0.19);
     }
-    
+
     .faq {
       background: #faf1f5;
       border-radius: 12px;
@@ -531,14 +531,12 @@
       }
       .mobile-menu a.activo { background: #502948; color: #fff; }
 
-     /* Mobile typography / layout tweaks */
+      /* Mobile typography / layout tweaks */
       header { padding-top: 56px; }
       header h1 { font-size: 1.4rem; }
       header p { font-size: 0.95rem; }
       .main { margin: 18px auto; padding: 18px; border-radius: 14px; }
       .cta { display: block; width: calc(100% - 40px); max-width: 420px; margin: 18px auto 24px auto; }
-      .memorial { padding: 14px 12px; gap: 12px; }
-      .memorial img { max-width: 48%; height: auto; min-width: 120px; margin: 6px; }
       .main, .servicio, .memorial, .faq, .contacto { box-shadow: 0 2px 8px rgba(80,41,72,0.08); transition: none; }
       nav a, .cta, .contacto a { min-height: 44px; line-height: 1.2; }
       section { margin-bottom: 14px; }
@@ -549,7 +547,6 @@
       header h1 { font-size: 1.2rem; }
       header img { left: 10px; top: 8px; width: 52px; height: 52px; }
       .mobile-menu { width: calc(100% - 28px); padding: 18px 12px; }
-      .memorial img { width: 46%; min-width: 110px; }
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
@@ -569,12 +566,13 @@
       <span class="bar" aria-hidden="true"></span>
     </button>
   </header>
-  
+
   <!-- Nav principal: en escritorio se ve exactamente igual.
        En móvil las .nav-links se ocultan y se usa .mobile-menu -->
   <nav>
     <div class="nav-links">
       <a href="#servicios" class="activo">Servicios</a>
+      <a href="#memorial">Memorial</a>
       <a href="#faq">Preguntas Frecuentes</a>
       <a href="#valores">Nuestros Valores</a>
       <a href="#contacto">Contacto</a>
@@ -675,8 +673,8 @@
 
     <section class="contacto" id="contacto">
       <h2>Contacto</h2>
-      <h2></h2>WhatsApp: <a href="https://wa.me/5491136584970" target="_blank">5491136584970</a> <br>
-      <h2></h24>Correo: <a href="mailto:cremacionessiempreatulado@gmail.com">cremacionessiempreatulado@gmail.com</a></p>
+      <p>WhatsApp: <a href="https://wa.me/5491136584970" target="_blank">5491136584970</a> <br>
+      Correo: <a href="mailto:cremacionessiempreatulado@gmail.com">cremacionessiempreatulado@gmail.com</a></p>
       <div class="redes">
         <a href="https://www.facebook.com/profile.php?id=100065671501966#" target="_blank" title="Facebook"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
         <a href="https://www.instagram.com/siempre_a_tu_lado_cremaciones/?hl=es" target="_blank" title="Instagram"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
