@@ -543,11 +543,12 @@
       section { margin-bottom: 14px; }
   
 
-    /* Very small screens adjustment */
+     /* Very small screens adjustment */
     @media (max-width: 420px) {
       header h1 { font-size: 1.2rem; }
       header img { left: 10px; top: 8px; width: 52px; height: 52px; }
       .mobile-menu { width: calc(100% - 28px); padding: 18px 12px; }
+      .contacto h3 { width:20%; min-width: 80px; }
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
@@ -555,13 +556,11 @@
 <body>
   <!-- Partículas: en escritorio se mostrarán; en móvil el CSS oculta .particles -->
   <div class="particles" id="particles"></div>
-  
-  }
+
   <header>
     <img src="Mascota 1.jpeg" alt="Logotipo Siempre A Tu Lado" width="200" height="200">
     <h1>Siempre A Tu Lado</h1>
-    <p>"Sé que no es un adiós para siempre porque estarás eternamente en nuestros corazones"</p>
-    <p>Somos una empresa con más de diez años de experiencia</p>
+    <p>Sé que no es un adiós para siempre porque estarás eternamente en nuestros corazones</p>
     <!-- Botón hamburguesa (solo visible en móvil) -->
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false">
       <span class="bar" aria-hidden="true"></span>
