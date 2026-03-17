@@ -1,24 +1,72 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="es-AR">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17868680741"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Básicos -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#502948">
 
-  gtag('config', 'AW-17868680741');
-</script>
-  
-  <meta charset="UTF-8">
-  <title>Cremaciones de Mascotas - Siempre A Tu Lado </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Servicios de cremación para mascotas en CABA y Gran Buenos Aires. Atención personalizada, ¿quiénes somos?, memorial, preguntas frecuentes y contacto. Sé que no es un adiós para siempre porque estarás eternamente en nuestros corazones.">
-  <!-- Mejora: Preconnect y preload fuentes para mejor performance -->
+  <title>Cremaciones de Mascotas en CABA y GBA | Siempre A Tu Lado</title>
+  <meta name="description" content="Cremación de mascotas en CABA y Gran Buenos Aires. Cremación individual y colectiva, retiro a domicilio, urnas y recuerdos. Atención por WhatsApp 24 hs.">
+  <meta name="robots" content="index,follow">
+
+  <!-- Canonical (recomendado: reemplazá por tu dominio real cuando lo tengas) -->
+  <link rel="canonical" href="https://tudominio.com/">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:title" content="Cremaciones de Mascotas en CABA y GBA | Siempre A Tu Lado">
+  <meta property="og:description" content="Cremación de mascotas en CABA y Gran Buenos Aires. Individual/colectiva, retiro a domicilio, urnas y recuerdos. Atención por WhatsApp 24 hs.">
+  <meta property="og:url" content="https://tudominio.com/">
+  <!-- Si tenés una imagen de portada real, ponela acá (ideal 1200x630) -->
+  <!-- <meta property="og:image" content="https://tudominio.com/og-image.jpg"> -->
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cremaciones de Mascotas en CABA y GBA | Siempre A Tu Lado">
+  <meta name="twitter:description" content="Cremación de mascotas en CABA y Gran Buenos Aires. Individual/colectiva, retiro a domicilio, urnas y recuerdos. Atención por WhatsApp 24 hs.">
+
+  <!-- Performance: fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- Performance: background hero (reduce LCP). Ajustá el mismo URL que usás en CSS -->
+  <link rel="preload" as="image"
+        href="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1200&q=80"
+        imagesrcset="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=800&q=80 800w,
+                     https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1200&q=80 1200w"
+        imagesizes="100vw">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17868680741"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17868680741');
+  </script>
+
+  <!-- SEO: Schema.org (negocio local) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Siempre A Tu Lado - Cremaciones de Mascotas",
+    "description": "Servicios de cremación para mascotas en CABA y Gran Buenos Aires. Cremación individual y colectiva, retiro a domicilio, urnas y recuerdos. Atención por WhatsApp 24 hs.",
+    "areaServed": ["CABA", "Gran Buenos Aires"],
+    "url": "https://tudominio.com/",
+    "telephone": "+54 9 11 3658-4970",
+    "email": "cremacionessiempreatulado@gmail.com",
+    "sameAs": [
+      "https://www.instagram.com/siempre_a_tu_lado_cremaciones/?hl=es",
+      "https://www.facebook.com/profile.php?id=100065671501966#",
+      "https://wa.me/5491136584970"
+    ]
+  }
+  </script>
+
   <style>
     /* --- ESTILOS PRINCIPALES --- */
     html, body {
@@ -35,19 +83,20 @@
       min-height: 100vh;
       position: relative;
     }
-     body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(
-      120deg,
-      rgba(250, 209, 230, 0.10) 0%,
-      rgba(250, 209, 230, 0.18) 65%
-    );
-    z-index: 0;
-    mix-blend-mode: lighten;
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(
+        120deg,
+        rgba(250, 209, 230, 0.10) 0%,
+        rgba(250, 209, 230, 0.18) 65%
+      );
+      z-index: 0;
+      mix-blend-mode: lighten;
     }
+
     header {
       background: rgba(80,41,72,0.80);
       color: #fff;
@@ -78,20 +127,22 @@
     header img:hover { transform: rotate(-7deg) scale(1.09); }
     header h1 {
       font-family: 'Merriweather', serif;
-      font-size: 2.4em;
+      font-size: 2.15em;
       margin-bottom: 6px;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       font-weight: 900;
       text-shadow: 0 2px 8px #0002;
+      padding: 0 12px;
     }
     header p {
-      font-size: 1.18em;
+      font-size: 1.12em;
       font-weight: 400;
       font-style: italic;
       margin-top: 14px;
       color: #ffdbe5;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       margin-bottom: 0;
+      padding: 0 12px;
     }
     nav {
       background: rgba(255,244,250,0.98);
@@ -109,8 +160,8 @@
       text-decoration: none;
       color: #502948;
       font-weight: 600;
-      font-size: 1.15em;
-      padding: 9px 28px;
+      font-size: 1.05em;
+      padding: 9px 22px;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(248,187,208,0.04);
       position: relative;
@@ -139,6 +190,7 @@
       left:20%;
     }
     .nav-links a:focus { outline: 2px solid #d07c9b; }
+
     .main {
       max-width: 900px;
       margin: 40px auto 0 auto;
@@ -148,6 +200,7 @@
       box-shadow: 0 8px 64px rgba(80,41,72,0.09);
       position: relative;
       animation: fadeInUp 1.2s cubic-bezier(.73,.15,.55,1.02);
+      z-index: 2;
     }
     @keyframes fadeInUp {
       from { transform: translateY(48px); opacity: 0; }
@@ -173,6 +226,7 @@
       text-decoration-thickness: 1px;
       text-underline-offset: 9px;
     }
+
     .servicios-lista {
       display: flex; flex-wrap: wrap; gap: 34px;
       margin: 28px 0; justify-content: center;
@@ -219,9 +273,10 @@
     }
     .servicio:hover img { transform: scale(1.13) rotate(7deg); }
     .servicio a { color: #d07c9b; text-decoration: underline; }
+
     .cta {
       display: inline-block;
-      margin: 32px auto 56px auto; 
+      margin: 32px auto 56px auto;
       background: linear-gradient(90deg,#502948 0%,#d07c9b 100%);
       color: #fff; border: none; border-radius: 22px;
       padding: 14px 34px; font-size: 1.11em; font-weight: 700;
@@ -236,6 +291,7 @@
       background: linear-gradient(90deg,#d07c9b 0%,#502948 100%);
       color: #fff; transform: scale(1.07); box-shadow: 0 6px 26px rgba(80,41,72,0.19);
     }
+
     .faq {
       background: #faf1f5; border-radius: 12px; padding: 26px 20px;
       max-width: 650px; margin: 36px auto; box-shadow: 0 1px 14px rgba(80,41,72,0.13);
@@ -245,12 +301,9 @@
       box-shadow: 0 6px 40px rgba(80,41,72,0.21);
       background: #fff;
     }
-    .faq h3 {
-      color: #502948; font-size: 1.14em; font-family: 'Merriweather', serif;
-      margin-top: 0; font-weight: 700;
-    }
     .faq ul { padding-left: 20px; font-size: 1.07em; line-height: 1.6; color: #444; }
     .faq ul span { color:#d07c9b; }
+
     .valores-lista { display: flex; flex-wrap: wrap; gap: 28px; justify-content: center; margin: 24px 0 16px 0; }
     .valor {
       background: #faf1f5; border: 1.5px solid #e1bee7;
@@ -266,10 +319,7 @@
       border-left: 3px solid #d07c9b; background: transparent;
     }
     .valor .autor { color: #d07c9b; font-size: 0.97em; font-weight: 600; }
-    @media (max-width: 700px) {
-      .valores-lista { flex-direction: column; gap: 16px; }
-      .valor { max-width: 98vw; } 
-    }
+
     .contacto {
       background: #fff; border-radius: 12px; box-shadow: 0 1px 10px rgba(80,41,72,0.09);
       padding: 34px 20px; max-width: 520px; margin: 44px auto 0 auto; text-align: center;
@@ -301,44 +351,33 @@
     .redes a:hover img, .redes a:focus img {
       transform: scale(1.17) rotate(-6deg); box-shadow: 0 8px 22px rgba(80,41,72,0.18); filter: none;
     }
+
     footer {
       text-align: center; padding: 30px 0 14px 0;
       background: linear-gradient(90deg,#502948 0%, #502948 100%);
       color: #fff; margin-top: 64px; border-top: 2px solid #e1bee7;
       font-size: 1.05em; font-family: 'Merriweather', serif; letter-spacing: 0.7px;
       box-shadow: 0 -2px 10px rgba(80,41,72,0.05); animation: fadeIn 2s;
+      position: relative;
+      z-index: 2;
     }
     .fade-in { opacity: 0; animation: fadeIn 1.2s forwards; }
     @keyframes fadeIn { to { opacity: 1; }}
-    
-    /* ===============================
-   TEXTO JUSTIFICADO POR SECCIÓN
-   =============================== */
 
-    /* Mejor legibilidad en móvil */
+    /* ===============================
+      LEGIBILIDAD EN MÓVIL + CITAS
+    =============================== */
     @media (max-width: 700px) {
       #quienes-somos p,
       #faq ul li span {
         text-align: left;
       }
-    /* ===============================
-   CENTRAR SOLO LAS CITAS
-   =============================== */
-
-    #valores .valor blockquote {
-      text-align: center;
+      #valores .valor blockquote { text-align: center; }
+      #valores .valor .autor { display: block; text-align: center; }
     }
-    
-    #valores .valor .autor {
-      display: block;
-      text-align: center;
-    }
-      
     ::selection { background: #d07c9b; color: #fff; }
-    }
-    .particles {
-      position: fixed; pointer-events: none; inset: 0; z-index: 1; overflow: hidden;
-    }
+
+    .particles { position: fixed; pointer-events: none; inset: 0; z-index: 1; overflow: hidden; }
     .particle {
       position: absolute; border-radius: 50%; opacity: 0.13; background: #d07c9b;
       pointer-events:none; animation: particleMove 13s linear infinite;
@@ -347,6 +386,7 @@
       from { transform: translateY(0) scale(1); opacity: 0.18; }
       to { transform: translateY(120vh) scale(1.3); opacity: 0.07; }
     }
+
     /* ========= MOBILE MEJORAS ========= */
     .nav-toggle { display: none; }
     .mobile-overlay { display: none; }
@@ -386,7 +426,7 @@
       }
       .mobile-menu a.activo, .mobile-menu a:focus { background: #502948; color: #fff; }
       header { padding-top: 56px; }
-      header h1 { font-size: 1.4rem; }
+      header h1 { font-size: 1.35rem; }
       header p { font-size: 0.95rem; }
       .main { margin: 18px auto; padding: 18px; border-radius: 14px; }
       .cta { display: block; box-sizing: border-box; width: 100%; max-width: 280px; margin: 18px auto 24px auto; padding: 14px 18px; }
@@ -397,150 +437,207 @@
       header img { left: 10px; top: 8px; width: 52px; height: 52px; }
       .mobile-menu { width: calc(100% - 28px); padding: 18px 12px; }
     }
+
+    /* Accesibilidad/performance: reduce motion */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      .particles { display: none !important; }
+    }
   </style>
 </head>
+
 <body>
+  <a href="#contenido" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Saltar al contenido</a>
+
   <div class="particles" id="particles" aria-hidden="true"></div>
+
   <header>
-    <img src="Mascota 1.jpeg" alt="Logotipo Siempre A Tu Lado" width="150" height="150" loading="lazy">
-    <h1>Cremaciones de mascotas 
-    Siempre A Tu Lado</h1>
+    <!-- Importante SEO/LCP: el logo principal conviene NO lazy -->
+    <img src="Mascota 1.jpeg"
+         alt="Logo de Siempre A Tu Lado (cremaciones de mascotas)"
+         width="86" height="86" decoding="async" fetchpriority="high">
+
+    <h1>Cremaciones de mascotas en CABA y Gran Buenos Aires</h1>
     <p>Sé que no es un adiós para siempre porque estarás eternamente en nuestros corazones</p>
-    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false">
+
+    <button class="nav-toggle" id="navToggle"
+            aria-label="Abrir menú"
+            aria-controls="mobileMenu"
+            aria-expanded="false">
       <span class="bar" aria-hidden="true"></span>
       <span class="bar" aria-hidden="true"></span>
       <span class="bar" aria-hidden="true"></span>
     </button>
   </header>
-  <nav>
+
+  <nav aria-label="Navegación principal">
     <div class="nav-links">
       <a href="#quienes-somos">Acerca de nosotros</a>
       <a href="#servicios">Servicios</a>
-      <a href="#faq">Preguntas Frecuentes</a>
-      <a href="#valores">Nuestros Valores</a>
+      <a href="#faq">Preguntas frecuentes</a>
+      <a href="#valores">Nuestros valores</a>
       <a href="#contacto">Contacto</a>
     </div>
   </nav>
-  <!-- Overlay for mobile -->
+
   <div id="mobileOverlay" class="mobile-overlay" aria-hidden="true"></div>
-  <!-- Mobile menu -->
-  <aside id="mobileMenu" class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="true">
+
+  <aside id="mobileMenu" class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Menú">
     <a href="#quienes-somos">Acerca de nosotros</a>
     <a href="#servicios">Servicios</a>
-    <a href="#faq">Preguntas Frecuentes</a>
-    <a href="#valores">Nuestros Valores</a>
+    <a href="#faq">Preguntas frecuentes</a>
+    <a href="#valores">Nuestros valores</a>
     <a href="#contacto">Contacto</a>
   </aside>
-  <div class="main fade-in">
+
+  <main id="contenido" class="main fade-in">
     <section id="quienes-somos">
       <h2>Acerca de nosotros</h2>
       <p style="font-size:1.08em; line-height:1.65; color:#444; max-width:760px; margin:18px auto 28px auto;">
-        Somos una empresa dedicada a la <strong>cremación de mascotas</strong>, con más de 
+        Somos una empresa dedicada a la <strong>cremación de mascotas</strong>, con más de
         <strong>diez años de experiencia</strong> acompañando a las familias en el momento de la despedida.<br>
-        Trabajamos con respeto, amor y empatía, honrando el vínculo único entre cada mascota y su familia. Nuestro compromiso es brindar <strong>contención</strong> y <strong>una despedida digna</strong>: entendemos que no se trata solo de decir adiós, sino de agradecer todo el amor compartido.
+        Trabajamos con respeto, amor y empatía, honrando el vínculo único entre cada mascota y su familia.
+        Nuestro compromiso es brindar <strong>contención</strong> y <strong>una despedida digna</strong>.
       </p>
     </section>
+
     <section id="servicios">
-      <h2>Servicios Funerarios para Mascotas</h2>
+      <h2>Servicios funerarios para mascotas</h2>
+
       <div class="servicios-lista">
-        <div class="servicio">
-          <img src="Logo siempre a tu lado.PNG" alt="Logotipo Siempre A Tu Lado" width="200" height="200" loading="lazy">
-          <h3>Cremación Individual</h3>
-          <p>Servicio exclusivo y respetuoso. Las cenizas de tu mascota se entregan en urna personalizada, con certificado de cremación y atención profesional.</p>
-        </div>
-        <div class="servicio">
-          <img src="Logo siempre a tu lado.PNG" alt="Logotipo Siempre A Tu Lado" width="200" height="200" loading="lazy">
-          <h3>Cremación Colectiva</h3>
+        <article class="servicio">
+          <img src="Logo siempre a tu lado.PNG"
+               alt="Logo de Siempre A Tu Lado"
+               width="52" height="52" loading="lazy" decoding="async">
+          <h3>Cremación individual</h3>
+          <p>Servicio exclusivo y respetuoso. Las cenizas se entregan en urna personalizada, con certificado de cremación y atención profesional.</p>
+        </article>
+
+        <article class="servicio">
+          <img src="Logo siempre a tu lado.PNG"
+               alt="Logo de Siempre A Tu Lado"
+               width="52" height="52" loading="lazy" decoding="async">
+          <h3>Cremación colectiva</h3>
           <p>Alternativa económica, realizada con el mismo cuidado y respeto. Las cenizas no se entregan.</p>
-        </div>
-        <div class="servicio">
-          <img src="Logo siempre a tu lado.PNG" alt="Logotipo Siempre A Tu Lado" width="200" height="200" loading="lazy">
-          <h3>Retiro a Domicilio</h3>
-          <p>Retiramos a tu mascota en domicilio o clínica veterinaria en CABA y GBA, con vehículos adaptados y personal capacitado.</p>
-        </div>
-        <div class="servicio">
-          <img src="Logo siempre a tu lado.PNG" alt="Logotipo Siempre A Tu Lado" width="200" height="200" loading="lazy">
-          <h3>Urnas y Recuerdos</h3>
-          <p>Variedad de urnas y recuerdos para conservar a tu ser especial. 
+        </article>
+
+        <article class="servicio">
+          <img src="Logo siempre a tu lado.PNG"
+               alt="Logo de Siempre A Tu Lado"
+               width="52" height="52" loading="lazy" decoding="async">
+          <h3>Retiro a domicilio</h3>
+          <p>Retiro en domicilio o clínica veterinaria en CABA y GBA, con vehículos adaptados y personal capacitado.</p>
+        </article>
+
+        <article class="servicio">
+          <img src="Logo siempre a tu lado.PNG"
+               alt="Logo de Siempre A Tu Lado"
+               width="52" height="52" loading="lazy" decoding="async">
+          <h3>Urnas y recuerdos</h3>
+          <p>
+            Variedad de urnas y recuerdos para conservar a tu ser especial.
             <a href="Catálogo Siempre A Tu Lado 2026.pdf" target="_blank" rel="noopener">Ver catálogo</a>
           </p>
-        </div>
+        </article>
       </div>
-      <a class="cta" href="https://wa.me/5491136584970" target="_blank" rel="noopener">Solicitar servicio por WhatsApp</a>
+
+      <a class="cta"
+         href="https://wa.me/5491136584970"
+         target="_blank" rel="noopener"
+         aria-label="Solicitar servicio por WhatsApp">
+        Solicitar servicio por WhatsApp
+      </a>
     </section>
+
     <section class="faq" id="faq">
-      <h2>Preguntas Frecuentes</h2>
+      <h2>Preguntas frecuentes</h2>
       <ul>
         <li><strong>¿Cómo sé que las cenizas son de mi mascota?</strong><br>
           <span>La cremación individual garantiza que las cenizas entregadas corresponden exclusivamente a tu mascota. Se incluye certificado de cremación.</span>
         </li>
         <li><strong>¿Qué tipos de urnas ofrecen?</strong><br>
-          <span>Urnas de madera, económicas y opciones personalizadas. También recuerdos especiales.</span>
+          <span>Urnas de madera, opciones económicas y personalizadas. También recuerdos especiales.</span>
         </li>
         <li><strong>¿Qué hago si mi mascota falleció en casa?</strong><br>
           <span>Contactanos por WhatsApp las 24 horas para coordinar el retiro.</span>
         </li>
         <li><strong>¿Cuál es el tiempo de espera para la entrega de la urna?</strong><br>
-          <span>Puede variar de 72hs a 10 días, según el servicio elegido.</span>
+          <span>Puede variar de 72 hs a 10 días, según el servicio elegido.</span>
         </li>
       </ul>
     </section>
+
     <section id="valores">
-      <h2>Nuestros Valores</h2>
+      <h2>Nuestros valores</h2>
       <div class="valores-lista">
         <div class="valor">
-          <h4>Empatía</h4>
+          <h3 style="margin:0 0 10px 0;">Empatía</h3>
           <blockquote>
-            “Sol es lo máximo, la empatía que me mostró me ayudó mucho en ese momento, y el mismo día que mi gatita se me fue me ayudó con todo y a los 3 días ya la tenía de vuelta conmigo, cuando en otros lados tardan 10, 15, etc. Recomendada para despedir a y tener siempre consigo sus mascotitas. Gracias por todo Sol.”<br>
+            “Sol es lo máximo, la empatía que me mostró me ayudó mucho en ese momento...”<br>
             <span class="autor">– Opinión de Google</span>
           </blockquote>
         </div>
         <div class="valor">
-          <h4>Responsabilidad</h4>
+          <h3 style="margin:0 0 10px 0;">Responsabilidad</h3>
           <blockquote>
-            “Muy recomendable. Sol respondió muy rápido a las consultas y de forma muy amable y contenedora. En una semana tuvimos la urnita tal cual la pedimos. Todo perfecto. Muchas gracias por sobretodo dar tranquilidad en momentos no muy gratos.”<br>
+            “Muy recomendable. Sol respondió muy rápido a las consultas y de forma muy amable...”<br>
             <span class="autor">– Opinión de Google</span>
           </blockquote>
         </div>
         <div class="valor">
-          <h4>Compromiso</h4>
+          <h3 style="margin:0 0 10px 0;">Compromiso</h3>
           <blockquote>
-            “Uno a veces es sorprendido por estos momentos dolorosos y no sabe cómo reaccionar ni para dónde correr. Encontré de casualidad el servicio que ofrece Siempre a tu lado y nos ayudó muchísimo a poder afrontar este momento de la pérdida de nuestra perrita. Son muy bondadosos y prolijos al respecto. Recomiendo totalmente.”<br>
+            “Encontré de casualidad el servicio que ofrece Siempre a tu lado y nos ayudó muchísimo...”<br>
             <span class="autor">– Opinión de Google</span>
           </blockquote>
         </div>
         <div class="valor">
-          <h4>Respeto</h4>
+          <h3 style="margin:0 0 10px 0;">Respeto</h3>
           <blockquote>
-            “El servicio fue excelente en un momento muy difícil. Nos trataron con mucho respeto, empatía y calidez. Todo el proceso fue claro, profesional y muy humano. Agradezco profundamente el cuidado y la atención que tuvieron con nuestra mascota y con nosotros. Fue todo muy bueno y reconfortante dentro del dolor. Los recomendaría sin dudar.”<br>
+            “El servicio fue excelente en un momento muy difícil. Nos trataron con mucho respeto...”<br>
             <span class="autor">– Opinión de Google</span>
           </blockquote>
         </div>
       </div>
     </section>
+
     <section class="contacto" id="contacto">
       <h2>Contacto</h2>
+
+      <p style="margin: 0 0 10px 0; color:#444;">
+        Atención por email o WhatsApp.
+      </p>
+
       <a class="email-icon" href="mailto:cremacionessiempreatulado@gmail.com" aria-label="Enviar correo">
-        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" width="34" height="34" loading="lazy" decoding="async">
       </a>
-      <div class="redes">
-        <a href="https://www.facebook.com/profile.php?id=100065671501966#" target="_blank" title="Facebook" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
-        <a href="https://www.instagram.com/siempre_a_tu_lado_cremaciones/?hl=es" target="_blank" title="Instagram" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
-        <a href="https://wa.me/5491136584970" target="_blank" title="WhatsApp" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"></a>
+
+      <div class="redes" aria-label="Redes sociales">
+        <a href="https://www.facebook.com/profile.php?id=100065671501966#" target="_blank" title="Facebook" rel="noopener">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" width="32" height="32" loading="lazy" decoding="async">
+        </a>
+        <a href="https://www.instagram.com/siempre_a_tu_lado_cremaciones/?hl=es" target="_blank" title="Instagram" rel="noopener">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" width="32" height="32" loading="lazy" decoding="async">
+        </a>
+        <a href="https://wa.me/5491136584970" target="_blank" title="WhatsApp" rel="noopener">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" width="32" height="32" loading="lazy" decoding="async">
+        </a>
       </div>
     </section>
-  </div>
+  </main>
+
   <footer>
-    &copy; 2025 Siempre A Tu Lado | Servicios de Cremación para Mascotas | CABA y Gran Buenos Aires
+    &copy; 2026 Siempre A Tu Lado | Cremaciones de Mascotas | CABA y Gran Buenos Aires
   </footer>
+
   <script>
     // Partículas solo en escritorio, y regeneración sensible a rotación
     function crearParticulasCondicionales(num) {
       const container = document.getElementById('particles');
       if (!container) return;
       const mq = window.matchMedia('(max-width: 700px)');
-      const isSmall = mq.matches;
-      const cantidad = isSmall ? 0 : num;
+      const cantidad = mq.matches ? 0 : num;
+
       container.innerHTML = '';
       for (let i = 0; i < cantidad; i++) {
         const p = document.createElement('div');
@@ -552,6 +649,7 @@
         p.style.animationDuration = (10 + Math.random() * 9) + 's';
         container.appendChild(p);
       }
+
       const recreate = () => { container.innerHTML = ''; crearParticulasCondicionales(num); };
       if (mq.addEventListener) mq.addEventListener('change', recreate);
       else if (mq.addListener) mq.addListener(recreate);
@@ -563,6 +661,7 @@
       const toggle = document.getElementById('navToggle');
       const mobileMenu = document.getElementById('mobileMenu');
       const overlay = document.getElementById('mobileOverlay');
+
       function openMenu() {
         mobileMenu.classList.add('open');
         overlay.classList.add('visible');
@@ -573,6 +672,7 @@
         document.body.style.overflow = 'hidden';
         setTimeout(()=>{const l=mobileMenu.querySelector('a');l&&l.focus();},50);
       }
+
       function closeMenu() {
         mobileMenu.classList.remove('open');
         overlay.classList.remove('visible');
@@ -583,11 +683,13 @@
         document.body.style.overflow = '';
         toggle.focus();
       }
+
       if(toggle && mobileMenu && overlay){
         toggle.addEventListener('click', ()=> mobileMenu.classList.contains('open') ? closeMenu():openMenu());
         overlay.addEventListener('click', closeMenu);
-        mobileMenu.addEventListener('click', (e)=>{if (e.target.tagName === 'A')closeMenu();});
-        window.addEventListener('keydown', (e)=>{if(e.key==='Escape') closeMenu();});
+        mobileMenu.addEventListener('click', (e)=>{ if (e.target.tagName === 'A') closeMenu(); });
+        window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMenu(); });
+
         const mqDesktop = window.matchMedia('(min-width: 701px)');
         const handler = () => { if (mqDesktop.matches) closeMenu(); };
         if (mqDesktop.addEventListener) mqDesktop.addEventListener('change', handler);
@@ -595,7 +697,7 @@
       }
     })();
 
-    // Fade scroll reveal para elementos destacados
+    // Reveal on scroll (ligero)
     function revealOnScroll() {
       const fadeEls = document.querySelectorAll('.fade-in, .servicio, .faq, .contacto');
       fadeEls.forEach(el => {
@@ -606,7 +708,7 @@
         }
       });
     }
-    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('scroll', revealOnScroll, { passive: true });
     window.addEventListener('DOMContentLoaded', revealOnScroll);
   </script>
 </body>
